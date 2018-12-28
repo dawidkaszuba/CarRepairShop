@@ -1,17 +1,16 @@
 package model;
 
-import java.util.Date;
-
+import java.time.LocalDate;
 
 public class Order {
     private Integer id;
-    private Date dateOfAcceptanceForRepair;
-    private Date plannedRepairDate;
-    private Date startedDateOfRepair;
-    private Employee employeeRepairing;
-    private String descriptionOfproblem;
-    private Status status;
-    private Vehicle vehicle;
+    private LocalDate dateOfAcceptanceForRepair;
+    private LocalDate plannedRepairDate;
+    private LocalDate startedDateOfRepair;
+    private int idOfEmployee;
+    private String descriptionOfProblem;
+    private String status;
+    private int idOfVehicle;
     private double costOfWork;
     private double costOfAutoParts;
     private double costOfWorkHour;
@@ -25,60 +24,60 @@ public class Order {
         this.id = id;
     }
 
-    public Date getDateOfAcceptanceForRepair() {
+    public LocalDate getDateOfAcceptanceForRepair() {
         return dateOfAcceptanceForRepair;
     }
 
-    public void setDateOfAcceptanceForRepair(Date dateOfAcceptanceForRepair) {
+    public void setDateOfAcceptanceForRepair(LocalDate dateOfAcceptanceForRepair) {
         this.dateOfAcceptanceForRepair = dateOfAcceptanceForRepair;
     }
 
-    public Date getPlannedRepairDate() {
+    public LocalDate getPlannedRepairDate() {
         return plannedRepairDate;
     }
 
-    public void setPlannedRepairDate(Date plannedRepairDate) {
+    public void setPlannedRepairDate(LocalDate plannedRepairDate) {
         this.plannedRepairDate = plannedRepairDate;
     }
 
-    public Date getStartedDateOfRepair() {
+    public LocalDate getStartedDateOfRepair() {
         return startedDateOfRepair;
     }
 
-    public void setStartedDateOfRepair(Date startedDateOfRepair) {
+    public void setStartedDateOfRepair(LocalDate startedDateOfRepair) {
         this.startedDateOfRepair = startedDateOfRepair;
     }
 
-    public Employee getEmployeeRepairing() {
-        return employeeRepairing;
+    public int getIdOfEmployee() {
+        return idOfEmployee;
     }
 
-    public void setEmployeeRepairing(Employee employeeRepairing) {
-        this.employeeRepairing = employeeRepairing;
+    public void setIdOfEmployee(int idOfEmployee) {
+        this.idOfEmployee = idOfEmployee;
     }
 
-    public String getDescriptionOfproblem() {
-        return descriptionOfproblem;
+    public String getDescriptionOfProblem() {
+        return descriptionOfProblem;
     }
 
-    public void setDescriptionOfproblem(String descriptionOfproblem) {
-        this.descriptionOfproblem = descriptionOfproblem;
+    public void setDescriptionOfProblem(String descriptionOfProblem) {
+        this.descriptionOfProblem = descriptionOfProblem;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public Vehicle getVehicle() {
-        return vehicle;
+    public int getIdOfVehicle() {
+        return idOfVehicle;
     }
 
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    public void setIdOfVehicle(int idOfVehicle) {
+        this.idOfVehicle = idOfVehicle;
     }
 
     public double getCostOfWork() {
@@ -113,20 +112,24 @@ public class Order {
         this.quantityOfWorkHour = quantityOfWorkHour;
     }
 
-    public Order(Integer id, Date dateOfAcceptanceForRepair, Date plannedRepairDate, Date startedDateOfRepair,
-                 Employee employeeRepairing, String descriptionOfproblem, Status status, Vehicle vehicle,
-                 double costOfWork, double costOfAutoParts, double costOfWorkHour, double quantityOfWorkHour) {
+    public Order(Integer id, LocalDate dateOfAcceptanceForRepair, LocalDate plannedRepairDate,
+                 LocalDate startedDateOfRepair, int idOfEmployee, String descriptionOfProblem,
+                 String status, int idOfVehicle, double costOfWork, double costOfAutoParts, double costOfWorkHour,
+                 double quantityOfWorkHour) {
         this.id = id;
         this.dateOfAcceptanceForRepair = dateOfAcceptanceForRepair;
         this.plannedRepairDate = plannedRepairDate;
         this.startedDateOfRepair = startedDateOfRepair;
-        this.employeeRepairing = employeeRepairing;
-        this.descriptionOfproblem = descriptionOfproblem;
+        this.idOfEmployee = idOfEmployee;
+        this.descriptionOfProblem = descriptionOfProblem;
         this.status = status;
-        this.vehicle = vehicle;
+        this.idOfVehicle = idOfVehicle;
         this.costOfWork = costOfWork;
         this.costOfAutoParts = costOfAutoParts;
         this.costOfWorkHour = costOfWorkHour;
         this.quantityOfWorkHour = quantityOfWorkHour;
+    }
+
+    public Order() {
     }
 }

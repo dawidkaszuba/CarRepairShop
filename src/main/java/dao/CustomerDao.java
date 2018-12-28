@@ -3,6 +3,7 @@ package dao;
 import model.Customer;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class CustomerDao {
             try(PreparedStatement preparedStatement = connection.prepareStatement(sql,generatedColumns)){
                 preparedStatement.setString(1,customer.getName());
                 preparedStatement.setString(2,customer.getSurname());
-                preparedStatement.setString(3,String.valueOf(customer.getBirthday()));
+                preparedStatement.setDate(3,Date.valueOf(customer.getBirthday()));
                 preparedStatement.setString(4,customer.getEmail());
                 preparedStatement.executeUpdate();
 
@@ -28,7 +29,7 @@ public class CustomerDao {
             try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
                 preparedStatement.setString(1,customer.getName());
                 preparedStatement.setString(2,customer.getName());
-                preparedStatement.setString(3,String.valueOf(customer.getBirthday()));
+                preparedStatement.setDate(3,Date.valueOf(customer.getBirthday()));;
                 preparedStatement.setInt(4,customer.getId());
                 preparedStatement.execute();
             }catch(SQLException e){
@@ -66,7 +67,7 @@ public class CustomerDao {
                 customer.setId(rs.getInt("id"));
                 customer.setName(rs.getString("name"));
                 customer.setSurname(rs.getString("surname"));
-                customer.setBirthday(rs.getDate("birthday"));
+                customer.setBirthday(rs.getObject("birthday",LocalDate.class));
                 customer.setEmail(rs.getString("email"));
 
 
@@ -87,7 +88,7 @@ public class CustomerDao {
                 customer.setId(rs.getInt("id"));
                 customer.setName(rs.getString("name"));
                 customer.setSurname(rs.getString("surname"));
-                customer.setBirthday(rs.getDate("birthday"));
+                customer.setBirthday(rs.getObject("birthday",LocalDate.class));
                 customer.setEmail(rs.getString("email"));
                 customers.add(customer);
             }

@@ -1,0 +1,5 @@
+<ul class="menu">
+    <li><a href="/">Strona główna</a></li>
+    <li><a href="/groups">Grupy</a></li>
+    <li><a href="/PanelAdmin">Panel administratora</a></li>
+</ul>

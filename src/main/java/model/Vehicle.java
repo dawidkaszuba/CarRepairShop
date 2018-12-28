@@ -1,7 +1,6 @@
 package model;
 
-import java.util.Date;
-
+import java.time.LocalDate;
 
 public class Vehicle {
     private Integer id;
@@ -9,7 +8,7 @@ public class Vehicle {
     private String brand;
     private int yearOfProduction;
     private String registrationNumber;
-    private Date nextTechnicalReview;
+    private LocalDate nextTechnicalReview;
 
     public Integer getId() {
         return id;
@@ -51,15 +50,16 @@ public class Vehicle {
         this.registrationNumber = registrationNumber;
     }
 
-    public Date getNextTechnicalReview() {
+    public LocalDate getNextTechnicalReview() {
         return nextTechnicalReview;
     }
 
-    public void setNextTechnicalReview(Date nextTechnicalReview) {
+    public void setNextTechnicalReview(LocalDate nextTechnicalReview) {
         this.nextTechnicalReview = nextTechnicalReview;
     }
 
-    public Vehicle(Integer id, String model, String brand, int yearOfProduction, String registrationNumber, Date nextTechnicalReview) {
+    public Vehicle(Integer id, String model, String brand, int yearOfProduction,
+                   String registrationNumber, LocalDate nextTechnicalReview) {
         this.id = id;
         this.model = model;
         this.brand = brand;

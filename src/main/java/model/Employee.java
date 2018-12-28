@@ -65,6 +65,9 @@ public class Employee {
         this.costOfWorkHour = costOfWorkHour;
     }
 
+    public Employee() {
+    }
+
     public Employee(Integer id, String name, String surname, String address, String phoneNumber, String note, double costOfWorkHour) {
         this.id = id;
         this.name = name;
@@ -73,5 +76,6 @@ public class Employee {
         this.phoneNumber = phoneNumber;
         this.note = note;
         this.costOfWorkHour = costOfWorkHour;
+
     }
 }
