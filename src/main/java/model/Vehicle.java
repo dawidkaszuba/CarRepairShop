@@ -9,6 +9,7 @@ public class Vehicle {
     private int yearOfProduction;
     private String registrationNumber;
     private LocalDate nextTechnicalReview;
+    private int idOfOwner;
 
     public Integer getId() {
         return id;
@@ -58,13 +59,25 @@ public class Vehicle {
         this.nextTechnicalReview = nextTechnicalReview;
     }
 
-    public Vehicle(Integer id, String model, String brand, int yearOfProduction,
-                   String registrationNumber, LocalDate nextTechnicalReview) {
+    public int getIdOfOwner() {
+        return idOfOwner;
+    }
+
+    public void setIdOfOwner(int idOfOwner) {
+        this.idOfOwner = idOfOwner;
+    }
+
+    public Vehicle(Integer id, String model, String brand, int yearOfProduction, String registrationNumber,
+                   LocalDate nextTechnicalReview, int idOfOwner) {
         this.id = id;
         this.model = model;
         this.brand = brand;
         this.yearOfProduction = yearOfProduction;
         this.registrationNumber = registrationNumber;
         this.nextTechnicalReview = nextTechnicalReview;
+        this.idOfOwner = idOfOwner;
+    }
+
+    public Vehicle() {
     }
 }

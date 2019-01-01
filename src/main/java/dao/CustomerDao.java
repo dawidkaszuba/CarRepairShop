@@ -1,6 +1,8 @@
 package dao;
 
+import database.DbUtil;
 import model.Customer;
+
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -28,9 +30,10 @@ public class CustomerDao {
             String sql = "UPDATE customers SET name=?, surname=?, birthday=?,email=? WHERE id=?";
             try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
                 preparedStatement.setString(1,customer.getName());
-                preparedStatement.setString(2,customer.getName());
-                preparedStatement.setDate(3,Date.valueOf(customer.getBirthday()));;
-                preparedStatement.setInt(4,customer.getId());
+                preparedStatement.setString(2,customer.getSurname());
+                preparedStatement.setDate(3,Date.valueOf(customer.getBirthday()));
+                preparedStatement.setString(4,customer.getEmail());
+                preparedStatement.setInt(5,customer.getId());
                 preparedStatement.execute();
             }catch(SQLException e){
                 e.printStackTrace();
@@ -39,18 +42,18 @@ public class CustomerDao {
         }
     }
 
-    public static void delete(Connection connection, Customer customer){
-        if(customer.getId() != null){
+    public static void delete(Connection connection, Integer id){
+        if(id != null){
 
             String sql = "DELETE FROM customers WHERE id=?";
             try(PreparedStatement preparedStatement =connection.prepareStatement(sql)){
-                preparedStatement.setInt(1,customer.getId());
+                preparedStatement.setInt(1,id);
                 preparedStatement.execute();
             }catch(SQLException e){
                 e.printStackTrace();
 
             }
-            Integer id = null;
+            id = null;
         }
 
     }
@@ -78,19 +81,21 @@ public class CustomerDao {
         return customer;
     }
 
-    public static List<Customer> findAll(Connection connection){
+    public static List<Customer> findAll(){
         String sql ="SELECT * FROM customers";
         List<Customer> customers = new ArrayList<>();
-        try(Statement statement = connection.createStatement()){
-            ResultSet rs = statement.executeQuery(sql);
-            while(rs.next()){
-                Customer customer = new Customer();
-                customer.setId(rs.getInt("id"));
-                customer.setName(rs.getString("name"));
-                customer.setSurname(rs.getString("surname"));
-                customer.setBirthday(rs.getObject("birthday",LocalDate.class));
-                customer.setEmail(rs.getString("email"));
-                customers.add(customer);
+        try(Connection connection = DbUtil.getConn()){
+            try(Statement statement = connection.createStatement()) {
+                ResultSet rs = statement.executeQuery(sql);
+                while (rs.next()) {
+                    Customer customer = new Customer();
+                    customer.setId(rs.getInt("id"));
+                    customer.setName(rs.getString("name"));
+                    customer.setSurname(rs.getString("surname"));
+                    customer.setBirthday(rs.getObject("birthday", LocalDate.class));
+                    customer.setEmail(rs.getString("email"));
+                    customers.add(customer);
+                }
             }
 
         }catch(SQLException e){

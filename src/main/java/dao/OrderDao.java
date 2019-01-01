@@ -1,6 +1,9 @@
 package dao;
 
+
+import database.DbUtil;
 import model.Order;
+
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -13,7 +16,7 @@ public class OrderDao {
         if(order.getId() == null){
             String sql = "INSERT INTO orders(dateOfAcceptanceForRepair, dateOfAcceptanceForRepair, startedDateOfRepair," +
                     "idOfEmployee, descriptionOfProblem, status, idOfVehicle, costOfWork, costOfAutoParts, costOfWorkHour" +
-                    "quantityOfWorkHour) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+                    "quantityOfWorkHour,idOfCustomer) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
             String[] generatedColumns = {"id"};
             try(PreparedStatement preparedStatement = connection.prepareStatement(sql,generatedColumns)){
                 preparedStatement.setDate(1,Date.valueOf(order.getDateOfAcceptanceForRepair()));
@@ -27,6 +30,7 @@ public class OrderDao {
                 preparedStatement.setDouble(9,order.getCostOfAutoParts());
                 preparedStatement.setDouble(10,order.getCostOfWorkHour());
                 preparedStatement.setDouble(11,order.getQuantityOfWorkHour());
+                preparedStatement.setInt(12,order.getIdOfCustomer());
                 preparedStatement.executeUpdate();
 
             }catch(SQLException e){
@@ -35,7 +39,7 @@ public class OrderDao {
         }else {
             String sql = "UPDATE orders SET dateOfAcceptanceForRepair=?, dateOfAcceptanceForRepair=?, startedDateOfRepair=?," +
                     "idOfEmployee=?, descriptionOfProblem=?, status=?, idOfVehicle=?, costOfWork=?, costOfAutoParts=?, costOfWorkHour=?," +
-                    "quantityOfWorkHour=? WHERE id=?";
+                    "quantityOfWorkHour=?, idOfCustomer=? WHERE id=?";
             try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
                 preparedStatement.setDate(1,Date.valueOf(order.getDateOfAcceptanceForRepair()));
                 preparedStatement.setDate(2,Date.valueOf(order.getPlannedRepairDate()));
@@ -48,7 +52,9 @@ public class OrderDao {
                 preparedStatement.setDouble(9,order.getCostOfAutoParts());
                 preparedStatement.setDouble(10,order.getCostOfWorkHour());
                 preparedStatement.setDouble(11,order.getQuantityOfWorkHour());
-                preparedStatement.setInt(12,order.getId());
+                preparedStatement.setInt(12,order.getIdOfCustomer());
+                preparedStatement.setInt(13,order.getId());
+
                 preparedStatement.execute();
             }catch(SQLException e) {
                 e.printStackTrace();
@@ -89,6 +95,7 @@ public class OrderDao {
                 order.setCostOfAutoParts(rs.getDouble("costOfAutoParts"));
                 order.setCostOfWorkHour(rs.getDouble("costOfWorkHour"));
                 order.setQuantityOfWorkHour(rs.getDouble("quantityOfWorkHour"));
+                order.setIdOfCustomer(rs.getInt("idOfCustomer"));
             }
         }catch(SQLException e){
             e.printStackTrace();
@@ -97,28 +104,35 @@ public class OrderDao {
         return order;
     }
 
-    public static List<Order> findAll(Connection connection){
+    public static List<Order> findAll(Integer limit){
         List<Order> orders = new ArrayList<>();
-        Order order = new Order();
-        String sql = "SELECT * from orders";
-        try(Statement statement = connection.createStatement()){
-            ResultSet rs = statement.executeQuery(sql);
-            while(rs.next()){
-                order.setId(rs.getInt("id"));
-                order.setDateOfAcceptanceForRepair(rs.getObject("dateOfAcceptanceForRepair",LocalDate.class));
-                order.setPlannedRepairDate(rs.getObject("plannedRepairDate",LocalDate.class));
-                order.setStartedDateOfRepair(rs.getObject("startedDateOfRepair",LocalDate.class));
-                order.setIdOfEmployee(rs.getInt("idOfEmployee"));
-                order.setDescriptionOfProblem(rs.getString("descriptionOfProblem"));
-                order.setStatus(rs.getString("status"));
-                order.setIdOfVehicle(rs.getInt("idOfVehicle"));
-                order.setCostOfWork(rs.getDouble("costOfWork"));
-                order.setCostOfAutoParts(rs.getDouble("costOfAutoParts"));
-                order.setCostOfWorkHour(rs.getDouble("costOfWorkHour"));
-                order.setQuantityOfWorkHour(rs.getDouble("quantityOfWorkHour"));
-                orders.add(order);
+        String sql = "SELECT * FROM orders ORDER BY dateOfAcceptanceForRepair DESC";
+        try(Connection connection = DbUtil.getConn()){
+            try(Statement statement = connection.createStatement()) {
+                ResultSet rs = statement.executeQuery(sql);
+                if (limit != null) {
+                    statement.setFetchSize(limit);
+                    statement.setMaxRows(limit);
+                    statement.setFetchDirection(ResultSet.FETCH_FORWARD);
+                }
+                while (rs.next()) {
+                    Order order = new Order();
+                    order.setId(rs.getInt("id"));
+                    order.setDateOfAcceptanceForRepair(rs.getObject("dateOfAcceptanceForRepair", LocalDate.class));
+                    order.setPlannedRepairDate(rs.getObject("plannedRepairDate", LocalDate.class));
+                    order.setStartedDateOfRepair(rs.getObject("startedDateOfRepair", LocalDate.class));
+                    order.setIdOfEmployee(rs.getInt("idOfEmployee"));
+                    order.setDescriptionOfProblem(rs.getString("descriptionOfProblem"));
+                    order.setStatus(rs.getString("status"));
+                    order.setIdOfVehicle(rs.getInt("idOfVehicle"));
+                    order.setCostOfWork(rs.getDouble("costOfWork"));
+                    order.setCostOfAutoParts(rs.getDouble("costOfAutoParts"));
+                    order.setCostOfWorkHour(rs.getDouble("costOfWorkHour"));
+                    order.setQuantityOfWorkHour(rs.getDouble("quantityOfWorkHour"));
+                    order.setIdOfCustomer(rs.getInt("idOfCustomer"));
+                    orders.add(order);
+                }
             }
-
         }catch(SQLException e){
             e.printStackTrace();
         }

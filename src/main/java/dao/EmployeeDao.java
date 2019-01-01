@@ -1,5 +1,6 @@
 package dao;
 
+import database.DbUtil;
 import model.Employee;
 
 import java.sql.*;
@@ -12,7 +13,7 @@ public class EmployeeDao {
     public static void save(Connection connection, Employee employee) {
         if (employee.getId() == null) {
             String[] generatedColumns = {"id"};
-            String sql = "INSERT INTO employee(name, surname, address, note, costOfWorkHour, phoneNumber) VALUES(?,?,?,?,?,?)";
+            String sql = "INSERT INTO employees(name, surname, address, note, costOfWorkHour, phoneNumber) VALUES(?,?,?,?,?,?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql,generatedColumns)) {
                 preparedStatement.setString(1, employee.getName());
                 preparedStatement.setString(2, employee.getSurname());
@@ -26,7 +27,7 @@ public class EmployeeDao {
                 e.printStackTrace();
             }
         } else {
-            String sql = "UPDATE employess SET name=?, surname=?, address=?, note=?, costOfWorkHour=?, phoneNumber=?) " +
+            String sql = "UPDATE employees SET name=?, surname=?, address=?, note=?, costOfWorkHour=?, phoneNumber=? " +
                     "WHERE id=?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, employee.getName());
@@ -45,11 +46,11 @@ public class EmployeeDao {
         }
     }
 
-    public static void delete(Connection connection, Employee employee) {
-        if (employee.getId() != null) {
-            String sql = "DELETE FROM employess WHERE id=?";
+    public static void delete(Connection connection, Integer id) {
+        if (id != null) {
+            String sql = "DELETE FROM employees WHERE id=?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setInt(1,employee.getId());
+                preparedStatement.setInt(1,id);
                 preparedStatement.execute();
 
             } catch (SQLException e) {
@@ -58,11 +59,11 @@ public class EmployeeDao {
 
         }
 
-        Integer id = null;
+        id = null;
     }
 
     public static Employee findById(Connection connection, int id){
-        String sql = "SELECT * FROM employess WHERE id=?";
+        String sql = "SELECT * FROM employees WHERE id=?";
         Employee employee = new Employee();
         try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.setInt(1,id);
@@ -84,23 +85,24 @@ public class EmployeeDao {
         return employee;
     }
 
-    public static List<Employee> findAll(Connection connection){
+    public static List<Employee> findAll(){
         List<Employee> employees = new ArrayList<>();
-        Employee employee = new Employee();
-        String sql = "SELECT * FROM employess";
-        try(Statement statement = connection.createStatement()){
-            ResultSet rs = statement.executeQuery(sql);
-            while(rs.next()){
-                employee.setId(rs.getInt("id"));
-                employee.setName(rs.getString("name"));
-                employee.setSurname(rs.getString("surname"));
-                employee.setAddress(rs.getString("address"));
-                employee.setNote(rs.getString("note"));
-                employee.setCostOfWorkHour(rs.getDouble("costOfWorkHour"));
-                employee.setPhoneNumber(rs.getString("phoneNumber"));
-                employees.add(employee);
+        String sql = "SELECT * FROM employees";
+        try(Connection connection = DbUtil.getConn()){
+            try(Statement statement = connection.createStatement()) {
+                ResultSet rs = statement.executeQuery(sql);
+                while (rs.next()) {
+                    Employee employee = new Employee();
+                    employee.setId(rs.getInt("id"));
+                    employee.setName(rs.getString("name"));
+                    employee.setSurname(rs.getString("surname"));
+                    employee.setAddress(rs.getString("address"));
+                    employee.setNote(rs.getString("note"));
+                    employee.setCostOfWorkHour(rs.getDouble("costOfWorkHour"));
+                    employee.setPhoneNumber(rs.getString("phoneNumber"));
+                    employees.add(employee);
+                }
             }
-
         }catch(SQLException e){
             e.printStackTrace();
         }
