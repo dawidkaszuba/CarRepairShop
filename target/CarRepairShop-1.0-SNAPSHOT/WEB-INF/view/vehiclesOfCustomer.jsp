@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Lista klientów</title>
+    <title>Lista pojazdów</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta lang="pl">
@@ -16,24 +16,26 @@
 <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
 
 
-<h3>wyszukani klienci:</h3>
+<h3>pojazdy klienta:</h3>
 <table class="table">
 
 
-    <th>imię</th>
-    <th>nazwisko</th>
-    <th>urodziny</th>
-    <th>email</th>
-    <th>akcja</th>
+    <th>marka</th>
+    <th>model</th>
+    <th>rok produkcji</th>
+    <th>następny przegląd</th>
+    <th>historia napraw</th>
 
-    <c:forEach items="${customers}" var="customer">
+
+    <c:forEach items="${vehicles}" var="vehicle">
 
         <tr>
-            <td>${customer.name}</td>
-            <td>${customer.surname}</td>
-            <td>${customer.birthday}</td>
-            <td>${customer.email}</td>
-            <td><a href="/VehiclesOfCustomer?id=${customer.id}">pojazdy klienta</a></td>
+            <td>${vehicle.brand}</td>
+            <td>${vehicle.model}</td>
+            <td>${vehicle.yearOfProduction}</td>
+            <td>${vehicle.nextTechnicalReview}</td>
+            <td><a href="/RepairHistory?id=${vehicle.id}">historia napraw</a></td>
+
         </tr>
 
     </c:forEach>

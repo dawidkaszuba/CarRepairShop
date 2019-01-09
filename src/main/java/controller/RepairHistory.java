@@ -1,7 +1,7 @@
 package controller;
 
-import dao.VehicleDao;
-import model.Vehicle;
+import dao.OrderDao;
+import model.Order;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,19 +11,23 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/VehiclesOfCustomer")
-public class VehiclesOfCustomer extends HttpServlet {
+@WebServlet("/RepairHistory")
+public class RepairHistory extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        if(Integer.parseInt(request.getParameter("id"))>=0){
+        if(request.getParameter("id")!=null){
             int id = Integer.parseInt(request.getParameter("id"));
-            List<Vehicle> vehicles = VehicleDao.findVehiclesByCustomerId(id);
-            request.setAttribute("vehicles",vehicles);
-            getServletContext().getRequestDispatcher("/WEB-INF/view/vehiclesOfCustomer.jsp").forward(request,response);
+            List<Order> orders = OrderDao.findOrderByVehicleId(id);
+            request.setAttribute("orders", orders);
+            if(orders.size()==0){
+
+               response.sendRedirect("/Error1");
+            }else {
+                getServletContext().getRequestDispatcher("/WEB-INF/view/repairHistory.jsp");
+            }
         }
     }
 }

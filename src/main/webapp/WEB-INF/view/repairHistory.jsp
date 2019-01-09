@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Lista klientów</title>
+    <title>historia napraw</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta lang="pl">
@@ -15,25 +15,22 @@
 <body>
 <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
 
-
-<h3>wyszukani klienci:</h3>
+<h3>historia napraw pojazdu:</h3>
 <table class="table">
 
+    <th>Data rozpoczęcia naprawy</th>
+    <th>Opis problemu</th>
 
-    <th>imię</th>
-    <th>nazwisko</th>
-    <th>urodziny</th>
-    <th>email</th>
-    <th>akcja</th>
 
-    <c:forEach items="${customers}" var="customer">
+
+
+    <c:forEach items="${orders}" var="order">
 
         <tr>
-            <td>${customer.name}</td>
-            <td>${customer.surname}</td>
-            <td>${customer.birthday}</td>
-            <td>${customer.email}</td>
-            <td><a href="/VehiclesOfCustomer?id=${customer.id}">pojazdy klienta</a></td>
+
+            <td>${order.startedDateOfRepair}</td>
+            <td>${order.descriptionOfProblem}</td>
+
         </tr>
 
     </c:forEach>

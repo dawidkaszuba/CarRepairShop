@@ -25,7 +25,6 @@
     <th>urodziny</th>
     <th>email</th>
     <th>akcja</th>
-    <th>akcja</th>
 
     <c:forEach items="${customers}" var="customer">
 
@@ -34,8 +33,7 @@
             <td>${customer.surname}</td>
             <td>${customer.birthday}</td>
             <td>${customer.email}</td>
-            <td><a href="/DeleteCustomer?id=${customer.id}">usuń</a> / <a href="/EditCustomer?id=${customer.id}">edytuj</a></td>
-            <td><a href="/OrdersOfCustomer?id=${customer.id}">zlecenia</a> / <a href="/VehiclesOfCustomer?id=${customer.id}">pojazdy</a></td>
+            <td><a href="/VehiclesOfCustomer?id=${customer.id}">pojazdy klienta</a></td>
         </tr>
 
     </c:forEach>
