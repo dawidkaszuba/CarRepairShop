@@ -108,4 +108,31 @@ public class VehicleDao {
         }
         return vehicle;
     }
+
+    public static List<Vehicle> findVehiclesByCustomerId(int id){
+        List<Vehicle> vehicles = new ArrayList<>();
+        String sql = "SELECT  * FROM vehicles WHERE idOfOwner=?";
+        try(Connection connection = DbUtil.getConn()){
+            try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+                preparedStatement.setInt(1,id);
+                ResultSet rs = preparedStatement.executeQuery();
+                while(rs.next()){
+                    Vehicle vehicle = new Vehicle();
+                    vehicle.setId(rs.getInt("id"));
+                    vehicle.setModel(rs.getString("model"));
+                    vehicle.setBrand(rs.getString("brand"));
+                    vehicle.setNextTechnicalReview(LocalDate.parse(rs.getString("nextTechnicalReview")));
+                    vehicle.setRegistrationNumber(rs.getString("registrationNumber"));
+                    vehicle.setYearOfProduction(rs.getInt("yearOfProduction"));
+                    vehicle.setIdOfOwner(rs.getInt("idOfOwner"));
+                    vehicles.add(vehicle);
+                }
+
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        return vehicles;
+    }
 }

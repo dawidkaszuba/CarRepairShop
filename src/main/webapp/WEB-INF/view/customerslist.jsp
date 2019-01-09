@@ -37,6 +37,10 @@
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
+<div><a href="/FindCustomer">wyszukaj klienta-->></a></div>
+
+
+
 <h3>klienci:</h3>
 <table class="table">
 

@@ -1,8 +1,9 @@
 <ul class="navbar">
     <li><a href="/">strona główna</a></li>
     <li><a href="/VehiclesList">samochody</a></li>
-    <li><a href="/Orders">zlecenia</a></li>
+    <li><a href="/OrdersList">zlecenia</a></li>
     <li><a href="/EmployeeList">pracownicy</a></li>
     <li><a href="/CustomersList">klienci</a></li>
     <li><a href="/Reports">raporty</a></li>
+    <li><a href="/StatesList">statusy</a></li>
 </ul>

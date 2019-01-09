@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Lista klientów</title>
+    <title>Lista statusów</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta lang="pl">
@@ -15,52 +15,27 @@
 <body>
 <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
 
-<h3>Dodaj klienta:</h3>
-<form action="/AddCustomer" method="post">
+<h3>Dodaj status:</h3>
+<form action="/AddState" method="post">
     <div class="form-group">
-        <label for="name">imię</label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="imię">
+        <label for="name">nazwa</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="nazwa">
     </div>
-    <div class="form-group">
-        <label for="surname">nazwisko</label>
-        <input type="text" class="form-control" id="surname" name="surname" placeholder="nazwisko">
-    </div>
-    <div class="form-group">
-        <label for="surname">urodziny</label>
-        <input type="date" class="form-control" id="birthday" name="birthday" placeholder="urodziny">
-    </div>
-    <div class="form-group">
-        <label for="email">email</label>
-        <input type="email" class="form-control" id="email" name="email">
-    </div>
-
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
-<div><a href="/FindCustomer">wyszukaj klienta-->></a></div>
-
-
-
-<h3>klienci:</h3>
+<h3>statusy:</h3>
 <table class="table">
 
 
-    <th>imię</th>
-    <th>nazwisko</th>
-    <th>urodziny</th>
-    <th>email</th>
-    <th>akcja</th>
+    <th>nazwa</th>
     <th>akcja</th>
 
-    <c:forEach items="${customers}" var="customer">
+    <c:forEach items="${states}" var="state">
 
         <tr>
-            <td>${customer.name}</td>
-            <td>${customer.surname}</td>
-            <td>${customer.birthday}</td>
-            <td>${customer.email}</td>
-            <td><a href="/DeleteCustomer?id=${customer.id}">usuń</a> / <a href="/EditCustomer?id=${customer.id}">edytuj</a></td>
-            <td><a href="/OrdersOfCustomer?id=${customer.id}">zlecenia</a> / <a href="/VehiclesOfCustomer?id=${customer.id}">pojazdy</a></td>
+            <td>${state.name}</td>
+            <td><a href="/DeleteState?id=${state.id}">usuń</a> / <a href="/EditState?id=${state.id}">edytuj</a></td>
         </tr>
 
     </c:forEach>

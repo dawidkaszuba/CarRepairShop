@@ -15,33 +15,8 @@
 <body>
 <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
 
-<h3>Dodaj klienta:</h3>
-<form action="/AddCustomer" method="post">
-    <div class="form-group">
-        <label for="name">imię</label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="imię">
-    </div>
-    <div class="form-group">
-        <label for="surname">nazwisko</label>
-        <input type="text" class="form-control" id="surname" name="surname" placeholder="nazwisko">
-    </div>
-    <div class="form-group">
-        <label for="surname">urodziny</label>
-        <input type="date" class="form-control" id="birthday" name="birthday" placeholder="urodziny">
-    </div>
-    <div class="form-group">
-        <label for="email">email</label>
-        <input type="email" class="form-control" id="email" name="email">
-    </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
-<div><a href="/FindCustomer">wyszukaj klienta-->></a></div>
-
-
-
-<h3>klienci:</h3>
+<h3>wyszukani klienci:</h3>
 <table class="table">
 
 

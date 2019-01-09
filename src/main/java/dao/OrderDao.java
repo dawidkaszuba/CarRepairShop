@@ -12,50 +12,53 @@ import java.util.List;
 
 public class OrderDao {
 
-    public static void save(Connection connection, Order order) {
+    public static void save(Order order) {
         if(order.getId() == null){
-            String sql = "INSERT INTO orders(dateOfAcceptanceForRepair, dateOfAcceptanceForRepair, startedDateOfRepair," +
-                    "idOfEmployee, descriptionOfProblem, status, idOfVehicle, costOfWork, costOfAutoParts, costOfWorkHour" +
+            String sql = "INSERT INTO orders(dateOfAcceptanceForRepair,plannedRepairDate, startedDateOfRepair," +
+                    "idOfEmployee, descriptionOfProblem, status, idOfVehicle, costOfWork, costOfAutoParts, costOfWorkHour," +
                     "quantityOfWorkHour,idOfCustomer) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
             String[] generatedColumns = {"id"};
-            try(PreparedStatement preparedStatement = connection.prepareStatement(sql,generatedColumns)){
-                preparedStatement.setDate(1,Date.valueOf(order.getDateOfAcceptanceForRepair()));
-                preparedStatement.setDate(2,Date.valueOf(order.getPlannedRepairDate()));
-                preparedStatement.setDate(3,Date.valueOf(order.getStartedDateOfRepair()));
+            try(Connection connection = DbUtil.getConn()){
+            try(PreparedStatement preparedStatement = connection.prepareStatement(sql,generatedColumns)) {
+                preparedStatement.setDate(1, Date.valueOf(order.getDateOfAcceptanceForRepair()));
+                preparedStatement.setDate(2, Date.valueOf(order.getPlannedRepairDate()));
+                preparedStatement.setDate(3, Date.valueOf(order.getStartedDateOfRepair()));
                 preparedStatement.setInt(4, order.getIdOfEmployee());
-                preparedStatement.setString(5,order.getDescriptionOfProblem());
-                preparedStatement.setString(6,order.getStatus());
-                preparedStatement.setInt(7,order.getIdOfVehicle());
-                preparedStatement.setDouble(8,order.getCostOfWork());
-                preparedStatement.setDouble(9,order.getCostOfAutoParts());
-                preparedStatement.setDouble(10,order.getCostOfWorkHour());
-                preparedStatement.setDouble(11,order.getQuantityOfWorkHour());
-                preparedStatement.setInt(12,order.getIdOfCustomer());
+                preparedStatement.setString(5, order.getDescriptionOfProblem());
+                preparedStatement.setString(6, order.getStatus());
+                preparedStatement.setInt(7, order.getIdOfVehicle());
+                preparedStatement.setDouble(8, order.getCostOfWork());
+                preparedStatement.setDouble(9, order.getCostOfAutoParts());
+                preparedStatement.setDouble(10, order.getCostOfWorkHour());
+                preparedStatement.setDouble(11, order.getQuantityOfWorkHour());
+                preparedStatement.setInt(12, order.getIdOfCustomer());
                 preparedStatement.executeUpdate();
+            }
 
             }catch(SQLException e){
                 e.printStackTrace();
             }
         }else {
-            String sql = "UPDATE orders SET dateOfAcceptanceForRepair=?, dateOfAcceptanceForRepair=?, startedDateOfRepair=?," +
+            String sql = "UPDATE orders SET dateOfAcceptanceForRepair=?,plannedRepairDate, startedDateOfRepair=?," +
                     "idOfEmployee=?, descriptionOfProblem=?, status=?, idOfVehicle=?, costOfWork=?, costOfAutoParts=?, costOfWorkHour=?," +
                     "quantityOfWorkHour=?, idOfCustomer=? WHERE id=?";
-            try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-                preparedStatement.setDate(1,Date.valueOf(order.getDateOfAcceptanceForRepair()));
-                preparedStatement.setDate(2,Date.valueOf(order.getPlannedRepairDate()));
-                preparedStatement.setDate(3,Date.valueOf(order.getStartedDateOfRepair()));
+            try(Connection connection = DbUtil.getConn()){
+            try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setDate(1, Date.valueOf(order.getDateOfAcceptanceForRepair()));
+                preparedStatement.setDate(2, Date.valueOf(order.getPlannedRepairDate()));
+                preparedStatement.setDate(3, Date.valueOf(order.getStartedDateOfRepair()));
                 preparedStatement.setInt(4, order.getIdOfEmployee());
-                preparedStatement.setString(5,order.getDescriptionOfProblem());
-                preparedStatement.setString(6,order.getStatus());
-                preparedStatement.setInt(7,order.getIdOfVehicle());
-                preparedStatement.setDouble(8,order.getCostOfWork());
-                preparedStatement.setDouble(9,order.getCostOfAutoParts());
-                preparedStatement.setDouble(10,order.getCostOfWorkHour());
-                preparedStatement.setDouble(11,order.getQuantityOfWorkHour());
-                preparedStatement.setInt(12,order.getIdOfCustomer());
-                preparedStatement.setInt(13,order.getId());
-
+                preparedStatement.setString(5, order.getDescriptionOfProblem());
+                preparedStatement.setString(6, order.getStatus());
+                preparedStatement.setInt(7, order.getIdOfVehicle());
+                preparedStatement.setDouble(8, order.getCostOfWork());
+                preparedStatement.setDouble(9, order.getCostOfAutoParts());
+                preparedStatement.setDouble(10, order.getCostOfWorkHour());
+                preparedStatement.setDouble(11, order.getQuantityOfWorkHour());
+                preparedStatement.setInt(12, order.getIdOfCustomer());
+                preparedStatement.setInt(13, order.getId());
                 preparedStatement.execute();
+            }
             }catch(SQLException e) {
                 e.printStackTrace();
             }

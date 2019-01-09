@@ -104,4 +104,48 @@ public class CustomerDao {
         return customers;
     }
 
+    public static int findCustomerByIdOfVehicle(int idOfVehicle) {
+        String sql = "SELECT customers.id FROM customers JOIN vehicles ON vehicles.idOfOwner=customers.id WHERE vehicles.id=?;";
+        int customerId = -1;
+        try(Connection connection = DbUtil.getConn()){
+            try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+                preparedStatement.setInt(1,idOfVehicle);
+                ResultSet rs = preparedStatement.executeQuery();
+                if(rs.next()){
+                    customerId = rs.getInt("id");
+                }
+
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return customerId;
+    }
+
+    public static List<Customer> findCustomersByName(String surname){
+        List<Customer> customers = new ArrayList<>();
+        String sql = "SELECT * FROM customers WHERE surname LIKE ?";
+        try(Connection connection = DbUtil.getConn()){
+            try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+                preparedStatement.setString(1,surname +"%");
+                ResultSet rs = preparedStatement.executeQuery();
+                while (rs.next()) {
+                    Customer customer = new Customer();
+                    customer.setId(rs.getInt("id"));
+                    customer.setName(rs.getString("name"));
+                    customer.setSurname(rs.getString("surname"));
+                    customer.setBirthday(rs.getObject("birthday", LocalDate.class));
+                    customer.setEmail(rs.getString("email"));
+                    customers.add(customer);
+                }
+
+            }
+        }catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return customers;
+    }
 }

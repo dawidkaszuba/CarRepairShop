@@ -1,5 +1,6 @@
 package dao;
 
+import database.DbUtil;
 import model.State;
 
 import java.sql.*;
@@ -8,10 +9,11 @@ import java.util.List;
 
 public class StateDao {
 
-    public static void save(Connection connection, State status){
-        if(status.getId() == 0){
+    public static void save(State status){
+        if(status.getId() == null){
             String[] generatedColums = {"id"};
             String sql = "INSERT INTO states(name) VALUES(?)";
+            try(Connection connection = DbUtil.getConn()){
             try(PreparedStatement preparedStatement = connection.prepareStatement(sql, generatedColums)){
                 preparedStatement.setString(1,status.getName());
                 preparedStatement.executeUpdate();
@@ -19,9 +21,13 @@ public class StateDao {
             }catch(SQLException e){
                 e.printStackTrace();
             }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
         }else{
-            String sql = "UPDATE orders SET name=? WHERE id=?";
+            String sql = "UPDATE states SET name=? WHERE id=?";
+            try(Connection connection = DbUtil.getConn()){
             try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
                 preparedStatement.setString(1,status.getName());
                 preparedStatement.setInt(2,status.getId());
@@ -29,47 +35,58 @@ public class StateDao {
             }catch(SQLException e) {
                 e.printStackTrace();
             }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public static void delete(Connection connection, State state){
-        if(state.getId() !=null){
+    public static void delete(Integer id){
+        if(id !=null){
             String sql = "DELETE FROM states WHERE id=?";
-            try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-                preparedStatement.setInt(1,state.getId());
+            try(Connection connection = DbUtil.getConn()){
+            try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setInt(1, id);
                 preparedStatement.execute();
+            }
             }catch(SQLException e){
                 e.printStackTrace();
             }
         }
     }
 
-    public static State findById(Connection connection, int id){
+    public static State findById(int id){
         State state = new State();
         String sql = "SELECT * FROM states WHERE id=?";
-        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-            preparedStatement.setInt(1,id);
+        try(Connection connection = DbUtil.getConn()){
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
             preparedStatement.execute();
             ResultSet rs = preparedStatement.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 state.setId(rs.getInt("id"));
                 state.setName(rs.getString("name"));
             }
+        }
         }catch(SQLException e){
             e.printStackTrace();
         }
         return state;
     }
 
-    public static List<State> findAll(Connection connection) {
+    public static List<State> findAll() {
         List<State> states = new ArrayList<>();
-        State state = new State();
         String sql = "SELECT * FROM states";
-        try(Statement statement = connection.createStatement()){
+        try(Connection connection = DbUtil.getConn()){
+        try(Statement statement = connection.createStatement()) {
             ResultSet rs = statement.executeQuery(sql);
-            state.setId(rs.getInt("id"));
-            state.setName(rs.getString("name"));
-            states.add(state);
+            while(rs.next()){
+                State state = new State();
+                state.setId(rs.getInt("id"));
+                state.setName(rs.getString("name"));
+                states.add(state);
+            }
+        }
         }catch (SQLException e ){
             e.printStackTrace();
         }
