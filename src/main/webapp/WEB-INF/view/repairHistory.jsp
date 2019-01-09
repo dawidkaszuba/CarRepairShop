@@ -20,6 +20,7 @@
 
     <th>Data rozpoczęcia naprawy</th>
     <th>Opis problemu</th>
+    <th>akcja</th>
 
 
 
@@ -30,6 +31,7 @@
 
             <td>${order.startedDateOfRepair}</td>
             <td>${order.descriptionOfProblem}</td>
+            <td><a href="/DetailsOfOrder?id=${order.id}">szczegóły naprawy</a></td>
 
         </tr>
 

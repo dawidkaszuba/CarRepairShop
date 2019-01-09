@@ -79,9 +79,10 @@ public class OrderDao {
 
     }
 
-    public static Order findById(Connection connection, int id) {
+    public static Order findById(int id) {
         Order order = new Order();
         String sql = "SELECT * from orders WHERE id=?";
+        try(Connection connection = DbUtil.getConn()){
         try(PreparedStatement preparedStatement=connection.prepareStatement(sql)){
             preparedStatement.setInt(1,id);
             ResultSet rs = preparedStatement.executeQuery();
@@ -99,7 +100,7 @@ public class OrderDao {
                 order.setCostOfWorkHour(rs.getDouble("costOfWorkHour"));
                 order.setQuantityOfWorkHour(rs.getDouble("quantityOfWorkHour"));
                 order.setIdOfCustomer(rs.getInt("idOfCustomer"));
-            }
+            } }
         }catch(SQLException e){
             e.printStackTrace();
         }

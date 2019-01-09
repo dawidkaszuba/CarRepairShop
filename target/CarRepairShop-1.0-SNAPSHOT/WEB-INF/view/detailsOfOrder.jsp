@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>historia napraw</title>
+    <title>Szczegóły zlecenia</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta lang="pl">
@@ -15,27 +15,46 @@
 <body>
 <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
 
-<h3>historia napraw pojazdu:</h3>
+
+<h3>Szczegóły zlecenia:</h3>
 <table class="table">
 
+
+    <th>Data przyjęcia do naprawy</th>
+    <th>Planowana data rozpoczęcia naprawy</th>
     <th>Data rozpoczęcia naprawy</th>
+    <th>Przypisany do naprawy pracownik</th>
     <th>Opis problemu</th>
-    <th>akcja</th>
+    <th>Status</th>
+    <th>Pojazd którego dotyczy naprawa</th>
+    <th>Koszt naprawy dla klienta</th>
+    <th>Koszt wykorzystanych części</th>
+    <th>Koszt roboczogodziny</th>
+    <th>Ilość roboczogodzin</th>
+    <th>klient</th>
 
 
 
 
-    <c:forEach items="${orders}" var="order">
+
 
         <tr>
-
+            <td>${order.dateOfAcceptanceForRepair}</td>
+            <td>${order.plannedRepairDate}</td>
             <td>${order.startedDateOfRepair}</td>
+            <td>${order.idOfEmployee}</td>
             <td>${order.descriptionOfProblem}</td>
-            <td><a href="/DetailsOfOrder?id=${order.id}">szczegóły naprawy</a></td>
+            <td>${order.status}</td>
+            <td>${order.idOfVehicle}</td>
+            <td>${order.costOfWork}</td>
+            <td>${order.costOfAutoParts}</td>
+            <td>${order.costOfWorkHour}</td>
+            <td>${order.quantityOfWorkHour}</td>
+            <td>${order.idOfCustomer}</td>
 
         </tr>
 
-    </c:forEach>
+
 
 
 </table>
