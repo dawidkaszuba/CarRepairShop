@@ -26,7 +26,8 @@ public class RepairHistory extends HttpServlet {
 
                response.sendRedirect("/Error1");
             }else {
-                getServletContext().getRequestDispatcher("/WEB-INF/view/repairHistory.jsp");
+
+                getServletContext().getRequestDispatcher("/WEB-INF/view/repairHistory.jsp").forward(request,response);
             }
         }
     }
