@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Szczegóły zlecenia</title>
+    <title>w naprawie</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta lang="pl">
@@ -15,8 +15,7 @@
 <body>
 <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
 
-
-<h3>Szczegóły zlecenia:</h3>
+<h3>w naprawie:</h3>
 <table class="table">
 
 
@@ -35,6 +34,9 @@
 
 
 
+
+    <c:forEach items="${orders}" var="order">
+
         <tr>
             <td>${order.dateOfAcceptanceForRepair}</td>
             <td>${order.plannedRepairDate}</td>
@@ -51,7 +53,7 @@
 
         </tr>
 
-
+    </c:forEach>
 
 
 </table>

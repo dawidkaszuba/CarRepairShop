@@ -35,9 +35,6 @@
 
 
 
-
-
-
         <tr>
             <td>${order.dateOfAcceptanceForRepair}</td>
             <td>${order.plannedRepairDate}</td>

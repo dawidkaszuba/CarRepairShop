@@ -174,4 +174,37 @@ public class OrderDao {
         }
         return orders;
     }
+
+    public static List<Order> findByEmployeeIdCurrentRepair(int id, String status){
+        List<Order> orders = new ArrayList<>();
+        String sql = "SELECT * FROM orders where idOfEmployee=? AND status=?";
+        try(Connection connection = DbUtil.getConn()){
+            try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+                preparedStatement.setInt(1,id);
+                preparedStatement.setString(2,status);
+                ResultSet rs = preparedStatement.executeQuery();
+                while (rs.next()) {
+                    Order order = new Order();
+                    order.setId(rs.getInt("id"));
+                    order.setDateOfAcceptanceForRepair(rs.getObject("dateOfAcceptanceForRepair", LocalDate.class));
+                    order.setPlannedRepairDate(rs.getObject("plannedRepairDate", LocalDate.class));
+                    order.setStartedDateOfRepair(rs.getObject("startedDateOfRepair", LocalDate.class));
+                    order.setIdOfEmployee(rs.getInt("idOfEmployee"));
+                    order.setDescriptionOfProblem(rs.getString("descriptionOfProblem"));
+                    order.setStatus(rs.getString("status"));
+                    order.setIdOfVehicle(rs.getInt("idOfVehicle"));
+                    order.setCostOfWork(rs.getDouble("costOfWork"));
+                    order.setCostOfAutoParts(rs.getDouble("costOfAutoParts"));
+                    order.setCostOfWorkHour(rs.getDouble("costOfWorkHour"));
+                    order.setQuantityOfWorkHour(rs.getDouble("quantityOfWorkHour"));
+                    order.setIdOfCustomer(rs.getInt("idOfCustomer"));
+                    orders.add(order);
+                }
+
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return orders;
+    }
 }

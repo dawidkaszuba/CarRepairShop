@@ -69,7 +69,8 @@
             <td>${employee.phoneNumber}</td>
             <td>${employee.note}</td>
             <td>${employee.costOfWorkHour}</td>
-            <td><a href="/DeleteEmployee?id=${employee.id}">usuń</a> / <a href="/EditEmployee?id=${employee.id}">edytuj</a></td>
+            <td><a href="/DeleteEmployee?id=${employee.id}">usuń</a> / <a href="/EditEmployee?id=${employee.id}">edytuj</a> /
+            <a href="CurrentOrders?id=${employee.id}">aktualne zlecenia</a></td>
         </tr>
 
     </c:forEach>
