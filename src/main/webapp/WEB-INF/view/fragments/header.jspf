@@ -1,9 +1,21 @@
-<ul class="navbar">
-    <li><a href="/">strona główna</a></li>
-    <li><a href="/VehiclesList">samochody</a></li>
-    <li><a href="/OrdersList">zlecenia</a></li>
-    <li><a href="/EmployeeList">pracownicy</a></li>
-    <li><a href="/CustomersList">klienci</a></li>
-    <li><a href="/Reports">raporty</a></li>
-    <li><a href="/StatesList">statusy</a></li>
-</ul>
+
+
+<nav class="navbar navbar-dark bg-primary navbar-expand-md">
+
+    <button class="navbar navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="mainMenu">
+
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link text-dark active" href="/">strona główna</a></li>
+            <li class="nav-item"><a class="nav-link text-dark active" href="/VehiclesList">samochody</a></li>
+            <li class="nav-item"><a class="nav-link text-dark active" href="/OrdersList">zlecenia</a></li>
+            <li class="nav-item"><a class="nav-link text-dark active" href="/EmployeeList">pracownicy</a></li>
+            <li class="nav-item"><a class="nav-link text-dark active" href="/CustomersList">klienci</a></li>
+            <li class="nav-item"><a class="nav-link text-dark active" href="/Reports">raporty</a></li>
+            <li class="nav-item"><a class="nav-link text-dark active" href="/StatesList">statusy</a></li>
+        </ul>
+
+    </div>
+
+
+</nav>
