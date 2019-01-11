@@ -60,18 +60,12 @@
             </c:forEach>
         </select>
     </div>
-    <div class="form-group">
-        <label for="costOfWork">Koszt naprawy</label>
-        <input type="number" class="form-control" id="costOfWork" name="costOfWork" placeholder="Koszt naprawy">
-    </div>
+
     <div class="form-group">
     <label for="costOfAutoParts">Koszt części</label>
     <input type="number" class="form-control" id="costOfAutoParts" name="costOfAutoParts" placeholder="Koszt części">
     </div>
-    <div class="form-group">
-        <label for="costOfWorkHour">Koszt roboczogodziny</label>
-        <input type="number" class="form-control" id="costOfWorkHour" name="costOfWorkHour" placeholder="Koszt roboczogodziny">
-    </div>
+
     <div class="form-group">
         <label for="quantityOfWorkHour">Ilość roboczogodzin</label>
         <input type="number" class="form-control" id="quantityOfWorkHour" name="quantityOfWorkHour" placeholder="Ilość roboczogodzin">

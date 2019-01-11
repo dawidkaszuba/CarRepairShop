@@ -76,13 +76,11 @@ public class EditEmployee extends HttpServlet {
 
         if(request.getParameter("id") != null){
 
-            try {
-               Employee employee = EmployeeDao.findById(DbUtil.getConn(), Integer.parseInt(request.getParameter("id")));
+
+               Employee employee = EmployeeDao.findById(Integer.parseInt(request.getParameter("id")));
                request.setAttribute("employee", employee);
                getServletContext().getRequestDispatcher("/WEB-INF/view/editemployee.jsp").forward(request,response);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+
 
         }else{
             response.getWriter().append("Brak danych");

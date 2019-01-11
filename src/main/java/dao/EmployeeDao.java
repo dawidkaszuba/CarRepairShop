@@ -62,13 +62,14 @@ public class EmployeeDao {
         id = null;
     }
 
-    public static Employee findById(Connection connection, int id){
+    public static Employee findById(int id){
         String sql = "SELECT * FROM employees WHERE id=?";
         Employee employee = new Employee();
-        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-            preparedStatement.setInt(1,id);
+        try(Connection connection = DbUtil.getConn()){
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 employee.setId(rs.getInt("id"));
                 employee.setName(rs.getString("name"));
                 employee.setSurname(rs.getString("surname"));
@@ -77,7 +78,7 @@ public class EmployeeDao {
                 employee.setCostOfWorkHour(rs.getDouble("costOfWorkHour"));
                 employee.setPhoneNumber(rs.getString("phoneNumber"));
             }
-
+        }
         }catch(SQLException e){
             e.printStackTrace();
         }

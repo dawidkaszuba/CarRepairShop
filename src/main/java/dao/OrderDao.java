@@ -207,4 +207,24 @@ public class OrderDao {
         }
         return orders;
     }
+
+    public static int getWorkHoursByEmployeeAndDate(String date, String startedDateOfRepair, int id) {
+        String sql = "SELECT SUM(quantityOfWorkHour) FROM orders where startedDateOfRepair>=? AND startedDateOfRepair<? AND idOfEmployee=?";
+        int quantity = -1;
+        try(Connection connection = DbUtil.getConn()){
+            try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+                preparedStatement.setString(1,startedDateOfRepair);
+                preparedStatement.setString(2,date);
+                preparedStatement.setInt(3,id);
+                ResultSet rs = preparedStatement.executeQuery();
+                if(rs.next()){
+                    quantity = rs.getInt(1);
+                }
+
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return quantity;
+    }
 }

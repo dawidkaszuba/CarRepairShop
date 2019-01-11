@@ -1,6 +1,7 @@
 package controller;
 
 import dao.CustomerDao;
+import dao.EmployeeDao;
 import dao.OrderDao;
 import model.Order;
 
@@ -53,31 +54,26 @@ public class AddOrder extends HttpServlet {
             }else{
                 response.getWriter().append("Brak idOfVehicle");
             }
-            if (request.getParameter("costOfWork") != null) {
-                order.setCostOfWork(Double.parseDouble(request.getParameter("costOfWork")));
-            }else{
-                response.getWriter().append("Brak costOfWork");
-            }
+
             if (request.getParameter("costOfAutoParts") != null) {
                 order.setCostOfAutoParts(Double.parseDouble(request.getParameter("costOfAutoParts")));
             }else{
                 response.getWriter().append("Brak costOfAutoParts");
             }
-            if (request.getParameter("costOfWorkHour") != null) {
-                order.setCostOfWorkHour(Double.parseDouble(request.getParameter("costOfWorkHour")));
-            }else{
-                response.getWriter().append("Brak costOfWorkHour");
-            }
+
             if (request.getParameter("quantityOfWorkHour") != null) {
                 order.setQuantityOfWorkHour(Double.parseDouble(request.getParameter("quantityOfWorkHour")));
             }else{
                 response.getWriter().append("Brak quantityOfWorkHour");
             }
+
             if (request.getParameter("idOfVehicle") != null) {
                 order.setIdOfCustomer(CustomerDao.findCustomerByIdOfVehicle(Integer.parseInt(request.getParameter("idOfVehicle"))));
             }else{
                 response.getWriter().append("Brak idOfVehicle");
             }
+            setCostOfWorkHour(request, order);
+            setCostOfOrder(request, order);
 
             OrderDao.save(order);
 
@@ -91,7 +87,19 @@ public class AddOrder extends HttpServlet {
 
         response.sendRedirect("/OrdersList");
 
+    }
 
+    private void setCostOfOrder(HttpServletRequest request, Order order) {
+        double costOfWork = ((Integer.parseInt(request.getParameter("quantityOfWorkHour")))
+                * (EmployeeDao.findById(Integer.parseInt(request.getParameter("idOfEmployee"))).getCostOfWorkHour()))
+                +(Double.parseDouble(request.getParameter("costOfAutoParts")));
+        order.setCostOfWork(costOfWork);
+    }
+
+    private void setCostOfWorkHour(HttpServletRequest request, Order order) {
+        double costOfWorkHour = EmployeeDao.findById(Integer.parseInt(request.getParameter("idOfEmployee"))).getCostOfWorkHour();
+        System.out.println(costOfWorkHour);
+        order.setCostOfWorkHour(costOfWorkHour);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
