@@ -70,6 +70,10 @@
         <label for="quantityOfWorkHour">Ilość roboczogodzin</label>
         <input type="number" class="form-control" id="quantityOfWorkHour" name="quantityOfWorkHour" placeholder="Ilość roboczogodzin">
     </div>
+    <div class="form-group">
+        <label for="profit">Narzut</label>
+        <input type="number" step="0.01" class="form-control" id="profit" name="profit" placeholder="W przypadku kwoty 100 i narzutu 0,8 kwota dla klienta to 125">
+    </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

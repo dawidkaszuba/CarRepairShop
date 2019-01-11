@@ -17,8 +17,12 @@ import java.time.LocalDate;
 @WebServlet("/AddOrder")
 public class AddOrder extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        double profit =0;
         try {
             Order order = new Order();
+            if(request.getParameter("profit")!=null){
+                profit = Double.parseDouble(request.getParameter("profit"));
+            }
             if (request.getParameter("dateOfAcceptanceForRepair") != null) {
                 order.setDateOfAcceptanceForRepair(LocalDate.parse(request.getParameter("dateOfAcceptanceForRepair")));
             }else{
@@ -73,7 +77,7 @@ public class AddOrder extends HttpServlet {
                 response.getWriter().append("Brak idOfVehicle");
             }
             setCostOfWorkHour(request, order);
-            setCostOfOrder(request, order);
+            setCostOfOrder(request, order,profit);
 
             OrderDao.save(order);
 
@@ -89,10 +93,10 @@ public class AddOrder extends HttpServlet {
 
     }
 
-    private void setCostOfOrder(HttpServletRequest request, Order order) {
-        double costOfWork = ((Integer.parseInt(request.getParameter("quantityOfWorkHour")))
+    private void setCostOfOrder(HttpServletRequest request, Order order,double profit) {
+        double costOfWork = (((Integer.parseInt(request.getParameter("quantityOfWorkHour")))
                 * (EmployeeDao.findById(Integer.parseInt(request.getParameter("idOfEmployee"))).getCostOfWorkHour()))
-                +(Double.parseDouble(request.getParameter("costOfAutoParts")));
+                +(Double.parseDouble(request.getParameter("costOfAutoParts"))))/profit;
         order.setCostOfWork(costOfWork);
     }
 
