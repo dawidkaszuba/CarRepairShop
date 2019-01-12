@@ -19,9 +19,6 @@
 
         <h3>Dodaj zlecenie:</h3>
 
-
-
-
                 <form action="/AddOrder" method="post" class="row">
 
                     <div class="col-md-6">
