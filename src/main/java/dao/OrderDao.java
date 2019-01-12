@@ -3,12 +3,15 @@ package dao;
 
 import database.DbUtil;
 import model.Order;
+import model.Vehicle;
 
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OrderDao {
 
@@ -226,5 +229,33 @@ public class OrderDao {
             e.printStackTrace();
         }
         return quantity;
+    }
+
+    public static List<ArrayList<String>> findOrderWithVehicle(){
+        String sql = " Select orders.id,descriptionOfProblem, brand, model,registrationNumber from orders JOIN vehicles ON idOfVehicle=vehicles.id;\n";
+        List<ArrayList<String>> list = new ArrayList<>();
+        try(Connection connection = DbUtil.getConn()){
+            try(Statement statement = connection.createStatement()){
+                ResultSet rs = statement.executeQuery(sql);
+                while(rs.next()){
+                    List<String> firstList = new ArrayList<>();
+                    String id = rs.getString("id");
+                    String descriptionOfProblem = rs.getString("descriptionOfProblem");
+                    String brand = rs.getString("brand");
+                    String model = rs.getString("model");
+                    String registrationNumber = rs.getString("registrationNumber");
+                    firstList.add(id);
+                    firstList.add(descriptionOfProblem);
+                    firstList.add(brand);
+                    firstList.add(model);
+                    firstList.add(registrationNumber);
+                    list.add((ArrayList<String>) firstList);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
     }
 }
