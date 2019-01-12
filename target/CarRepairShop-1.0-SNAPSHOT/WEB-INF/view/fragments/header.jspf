@@ -1,6 +1,13 @@
 
 
 <nav class="navbar navbar-dark bg-primary navbar-expand-md">
+    <style>
+        .nav-item:hover, .navbar-toggler-icon:hover {
+            background-color: deepskyblue;
+        }
+
+    </style>
+
 
     <button class="navbar navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="mainMenu">

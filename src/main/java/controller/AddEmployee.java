@@ -15,6 +15,8 @@ import java.sql.SQLException;
 @WebServlet("/AddEmployee")
 public class AddEmployee extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setCharacterEncoding("utf-8");
+        request.setCharacterEncoding("utf-8");
         try {
             Employee employee = new Employee();
 
