@@ -77,11 +77,11 @@
 
                             <div class="form-group">
                                 <label for="quantityOfWorkHour">Ilość roboczogodzin</label>
-                                <input type="number" min="0.01" class="form-control" id="quantityOfWorkHour" name="quantityOfWorkHour" placeholder="Ilość roboczogodzin">
+                                <input type="number" min="1" step="1" class="form-control" id="quantityOfWorkHour" name="quantityOfWorkHour" placeholder="Ilość roboczogodzin">
                             </div>
                             <div class="form-group">
                                 <label for="profit">Narzut</label>
-                                <input type="number" min="0.01"  class="form-control" id="profit" name="profit" placeholder="W przypadku kwoty 100 i narzutu 0,8 kwota dla klienta to 125">
+                                <input type="number" min="0.01" step="0.01"  class="form-control" id="profit" name="profit" placeholder="W przypadku kwoty 100 i narzutu 0,8 kwota dla klienta to 125">
                             </div>
                     </div>
                             <button type="submit" class="btn btn-primary">Submit</button>

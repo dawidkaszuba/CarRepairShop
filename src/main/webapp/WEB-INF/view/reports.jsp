@@ -16,7 +16,7 @@
 <div class="container">
     <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
 
-    <h3>Generuj raporty:</h3>
+
     <p>Raport 1: roboczogodziny pracownika</p>
 
     <h3>pracownicy:</h3>

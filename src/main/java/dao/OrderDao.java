@@ -42,7 +42,7 @@ public class OrderDao {
                 e.printStackTrace();
             }
         }else {
-            String sql = "UPDATE orders SET dateOfAcceptanceForRepair=?,plannedRepairDate, startedDateOfRepair=?," +
+            String sql = "UPDATE orders SET dateOfAcceptanceForRepair=?,plannedRepairDate=?, startedDateOfRepair=?," +
                     "idOfEmployee=?, descriptionOfProblem=?, status=?, idOfVehicle=?, costOfWork=?, costOfAutoParts=?, costOfWorkHour=?," +
                     "quantityOfWorkHour=?, idOfCustomer=? WHERE id=?";
             try(Connection connection = DbUtil.getConn()){
