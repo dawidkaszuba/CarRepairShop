@@ -291,4 +291,65 @@ public class OrderDao {
         }
         return orders;
     }
+
+    public static double findSumOfCostOfWork(String date1, String date2){
+        double sumOfCostOfWork=0;
+        String sql = "Select sum(costOfWork) from orders where (dateOfAcceptanceForRepair>=? AND dateOfAcceptanceForRepair<=?);";
+        try(Connection connection = DbUtil.getConn()){
+            try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+                preparedStatement.setString(1,date1);
+                preparedStatement.setString(2,date2);
+                ResultSet rs = preparedStatement.executeQuery();
+                if(rs.next()){
+                    sumOfCostOfWork = rs.getDouble(1);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return sumOfCostOfWork;
+    }
+
+    public static double findSumOfCostOfAutoParts(String date1, String date2){
+        double sumOfcostOfAutoParts=0;
+        String sql = "Select sum(costOfAutoParts) from orders where (dateOfAcceptanceForRepair>=? AND dateOfAcceptanceForRepair<=?);";
+        try(Connection connection = DbUtil.getConn()){
+            try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+                preparedStatement.setString(1,date1);
+                preparedStatement.setString(2,date2);
+                ResultSet rs = preparedStatement.executeQuery();
+                if(rs.next()){
+                    sumOfcostOfAutoParts = rs.getDouble(1);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return sumOfcostOfAutoParts;
+    }
+
+    public static double findSumOfCostOfWorkHours(String date1, String date2){
+        double sumOfCostOfWorkHours=0;
+        String sql = "Select sum(quantityOfWorkHour * costOfWorkHour) from orders where (dateOfAcceptanceForRepair>=?" +
+                      " AND dateOfAcceptanceForRepair<=?);";
+        try(Connection connection = DbUtil.getConn()){
+            try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+                preparedStatement.setString(1,date1);
+                preparedStatement.setString(2,date2);
+                ResultSet rs = preparedStatement.executeQuery();
+                if(rs.next()){
+                    sumOfCostOfWorkHours = rs.getDouble(1);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return sumOfCostOfWorkHours;
+    }
 }

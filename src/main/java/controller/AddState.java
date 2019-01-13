@@ -14,10 +14,16 @@ import java.io.IOException;
 public class AddState extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
-        if(request.getParameter("name") != null);
+        if(request.getParameter("name") != ""){
+            System.out.println(request.getParameter("name"));
             State state = new State();
             state.setName(request.getParameter("name"));
             StateDao.save(state);
+        }else {
+            response.getWriter().append("Brak nazwy statusu");
+        }
+
+
         }catch(NumberFormatException e){
             response.getWriter().append("Brak nazwy statusu");
         }

@@ -17,7 +17,6 @@
 
     <div class="container">
             <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
-
             <table class="table">
 
                 <th>id</th>

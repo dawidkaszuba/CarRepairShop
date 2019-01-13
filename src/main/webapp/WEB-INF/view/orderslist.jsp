@@ -16,6 +16,7 @@
 <body>
         <div class="container">
         <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
+            <hr>
 
         <h3>Dodaj zlecenie:</h3>
 

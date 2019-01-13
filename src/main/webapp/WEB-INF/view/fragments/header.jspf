@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-dark bg-primary navbar-expand-md">
     <style>
-        .nav-item:hover, .navbar-toggler-icon:hover {
+        .nav-item:hover, .navbar-toggler-icon, .dropdown-item:hover {
             background-color: deepskyblue;
         }
 
@@ -17,8 +17,18 @@
             <li class="nav-item"><a class="nav-link text-dark active" href="/VehiclesList">samochody</a></li>
             <li class="nav-item"><a class="nav-link text-dark active" href="/OrdersList">zlecenia</a></li>
             <li class="nav-item"><a class="nav-link text-dark active" href="/EmployeeList">pracownicy</a></li>
-            <li class="nav-item"><a class="nav-link text-dark active" href="/CustomersList">klienci</a></li>
-            <li class="nav-item"><a class="nav-link text-dark active" href="/Reports">raporty</a></li>
+            <li class="nav-item"><a class="nav-link text-dark " href="/CustomersList">klienci</a></li>
+            <li class="nav-item dropdown">
+
+                <a class="nav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown" role="button">raporty</a>
+
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/Reports">raport roboczogodzin pracownika</a>
+                    <a class="dropdown-item" href="/Report2">raport zysków</a>
+                </div>
+            </li>
+
+
             <li class="nav-item"><a class="nav-link text-dark active" href="/StatesList">statusy</a></li>
         </ul>
 

@@ -18,11 +18,12 @@
             <h3>Raport roboczogodzin pracownika:</h3>
             <table class="table">
                 <tr>
-                    <th>Imię i nazwisko pracownika</th>&nbsp<th>Ilość roboczogodzin</th><th>Przedział czasowy</th>
+                    <th>Imię i nazwisko pracownika</th>&nbsp<th>Ilość roboczogodzin</th><th>Przedział czasowy</th><th>Pobierz plik tekstowy</th>
 
                 </tr>
                 <tr>
                     <td>${employee.name}&nbsp;${employee.surname}</td><td>${workHours}</td><td>Od:&nbsp${startedDateOfRepair}&nbspDo:&nbsp${date}</td>
+                    <td><a>raport1.txt</a></td>
                 </tr>
 
 
