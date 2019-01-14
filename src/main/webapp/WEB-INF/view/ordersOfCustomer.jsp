@@ -34,7 +34,6 @@
             <th>Koszt wykorzystanych części</th>
             <th>Koszt roboczogodziny</th>
             <th>Ilość roboczogodzin</th>
-            <th>klient</th>
             <th>akcja</th>
 
             <c:forEach items="${orders}" var="order">
@@ -51,7 +50,6 @@
                     <td>${order.costOfAutoParts}</td>
                     <td>${order.costOfWorkHour}</td>
                     <td>${order.quantityOfWorkHour}</td>
-                    <td>${order.idOfCustomer}</td>
                     <td><a href="/DeleteOrder?id=${order.id}">usuń</a> / <a href="/EditOrder?id=${order.id}">edytuj</a></td>
                 </tr>
 

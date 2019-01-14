@@ -56,26 +56,25 @@
         <table class="table">
 
 
-            <th>imię</th>
-            <th>nazwisko</th>
+            <th>imię i nazwisko</th>
             <th>adres</th>
             <th>numer telefonu</th>
             <th>uwagi</th>
             <th>koszt robocizny</th>
             <th>akcja</th>
-            <th>akcja</th>
+
 
             <c:forEach items="${employees}" var="employee">
 
                 <tr>
-                    <td>${employee.name}</td>
-                    <td>${employee.surname}</td>
+                    <td>${employee.name} &nbsp ${employee.surname}</td>
                     <td>${employee.address}</td>
                     <td>${employee.phoneNumber}</td>
                     <td>${employee.note}</td>
                     <td>${employee.costOfWorkHour}</td>
-                    <td><a href="/DeleteEmployee?id=${employee.id}">usuń</a> / <a href="/EditEmployee?id=${employee.id}">edytuj</a></td>
-                    <td><a href="CurrentOrders?id=${employee.id}">aktualne zlecenia</a></td>
+                    <td><a href="/DeleteEmployee?id=${employee.id}">usuń</a> / <a href="/EditEmployee?id=${employee.id}">edytuj</a> /
+                        <a href="CurrentOrders?id=${employee.id}">aktualne zlecenia</a></td>
+
                 </tr>
 
             </c:forEach>

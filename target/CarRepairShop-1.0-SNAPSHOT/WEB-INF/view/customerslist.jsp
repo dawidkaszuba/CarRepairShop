@@ -50,22 +50,21 @@
         <table class="table">
 
 
-            <th>imię</th>
-            <th>nazwisko</th>
+
+            <th>nazwisko i nazwisko</th>
             <th>urodziny</th>
             <th>email</th>
             <th>akcja</th>
-            <th>akcja</th>
+
 
             <c:forEach items="${customers}" var="customer">
 
                 <tr>
-                    <td>${customer.name}</td>
-                    <td>${customer.surname}</td>
+                    <td>${customer.name} &nbsp ${customer.surname}</td>
                     <td>${customer.birthday}</td>
                     <td>${customer.email}</td>
-                    <td><a href="/DeleteCustomer?id=${customer.id}">usuń</a> / <a href="/EditCustomer?id=${customer.id}">edytuj</a></td>
-                    <td><a href="/OrdersOfCustomer?id=${customer.id}">zlecenia</a> / <a href="/VehiclesOfCustomer?id=${customer.id}">pojazdy</a></td>
+                    <td><a href="/DeleteCustomer?id=${customer.id}">usuń</a> /
+                        <a href="/EditCustomer?id=${customer.id}">edytuj</a> / <a href="/OrdersOfCustomer?id=${customer.id}">zlecenia</a></td>
                 </tr>
 
             </c:forEach>
