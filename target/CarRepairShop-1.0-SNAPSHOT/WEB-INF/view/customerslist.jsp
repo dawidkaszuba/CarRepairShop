@@ -22,7 +22,7 @@
     <div class="container">
         <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
 
-        <h3>Dodaj klienta:</h3>
+        <h1>dodaj klienta:</h1>
         <form action="/AddCustomer" method="post" class="row">
             <div class="col-md-6">
                 <div class="form-group">
@@ -45,7 +45,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Dodaj</button>
         </form>
 
         <div><a href="/FindCustomer">wyszukaj klienta-->></a></div>
@@ -58,7 +58,7 @@
 
 
                     <div class="col-md-6">
-                        <div><p><span>imię i nazwisko</span><br>${customer.name} &nbsp ${customer.surname}</p></div>
+                        <div><p><span>imię i nazwisko</span><br>${customer.name}&nbsp${customer.surname}</p></div>
                         <div><p><span>urodziny</span><br>${customer.birthday}</p></div>
                     </div>
                     <div class="col-md-6">

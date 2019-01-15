@@ -27,7 +27,7 @@
     <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
     <hr>
 
-    <h3>Dodaj zlecenie:</h3>
+    <h1>dodaj zlecenie:</h1>
 
     <form action="/AddOrder" method="post" class="row">
 
@@ -93,7 +93,7 @@
                 <input type="number" min="0.01" step="0.01"  class="form-control" id="profit" name="profit" placeholder="W przypadku kwoty 100 i narzutu 0,8 kwota dla klienta to 125">
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Dodaj</button>
     </form>
 
     <h3>zlecenia:</h3>

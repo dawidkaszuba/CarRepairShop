@@ -17,7 +17,7 @@
 
 
 
-        <h3>edytuj pojazd:</h3>
+        <h1>edytuj pojazd:</h1>
         <form action="/EditVehicle" method="post" id="form" class="row">
             <div class="form-group">
                 <input type="hidden" class="form-control" id="id" name="id" value="${vehicle.id}">
@@ -58,7 +58,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Zapisz</button>
         </form>
 
 

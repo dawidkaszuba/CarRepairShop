@@ -22,7 +22,7 @@
     <div class="container">
         <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
 
-        <h3>Dodaj pracownika:</h3>
+        <h1>dodaj pracownika:</h1>
         <form action="/AddEmployee" method="post" class="row">
             <div class="col-md-6">
                 <div class="form-group">
@@ -55,7 +55,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Dodaj</button>
         </form>
 
         <h3>pracownicy:</h3>
@@ -66,7 +66,7 @@
         <div class="row">
                <div class="col-md-6">
 
-                    <div><p><span>imię i nazwisko</span><br>${employee.name} &nbsp ${employee.surname}</p></div>
+                    <div><p><span>imię i nazwisko</span><br>${employee.name}&nbsp${employee.surname}</p></div>
                     <div><p><span>adres</span><br>${employee.address}</p></div>
                     <div><p><span>numer telefonu</span><br>${employee.phoneNumber}</p></div>
                </div>

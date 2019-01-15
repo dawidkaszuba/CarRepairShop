@@ -8,6 +8,9 @@
         <param-name>number-orders</param-name>
         <param-value>5</param-value>
     </context-param>
+    <welcome-file-list>
+        <welcome-file>StartPage</welcome-file>
+    </welcome-file-list>
 
 
 </web-app>

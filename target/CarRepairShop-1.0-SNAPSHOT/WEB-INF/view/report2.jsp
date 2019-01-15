@@ -17,6 +17,7 @@
     <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
 
     <hr>
+    <h1>raport zysków</h1>
     <table>
         <tr><td>Suma wpłat od klientów</td><td>${sumOfCostOfWork}</td></tr>
         <tr><td>wykorzystane części</td><td>${sumOfCostOfAutoParts}</td></tr>

@@ -23,6 +23,7 @@
 
     <div class="container">
             <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
+        <h1>aktualne zlecenia</h1>
 
                 <c:forEach  items="${OrderWithVehicle}" var="i">
 
@@ -33,13 +34,13 @@
 
                                 <div class="row">
                                      <div class="col-md-6">
-                                        <div><p><span>id</span><br>${i[0]}</p></div>
-                                        <div><p><span>opis problemu</span><br>${i[1]}</p></div>
-                                         <div><p><span>marka</span><br>${i[2]}</p></div>
+                                         <div><p><span>opis problemu</span><br>${i[1]}</p></div>
+                                         <div><p><span>numer rejestracyjny</span><br>${i[4]}</p></div>
                                      </div>
                                      <div class="col-md-6">
+                                         <div><p><span>marka</span><br>${i[2]}</p></div>
                                          <div><p><span>model</span><br>${i[3]}</p></div>
-                                        <div><p><span>numer rejestracyjny</span><br>${i[4]}</p></div>
+
                                      </div>
 
                                 </div>

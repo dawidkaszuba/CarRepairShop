@@ -19,6 +19,8 @@ import java.util.List;
 @WebServlet("/EditOrder")
 public class EditOrder extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
 
         double profit =0;
         try {
@@ -73,7 +75,7 @@ public class EditOrder extends HttpServlet {
             }
 
             if (request.getParameter("quantityOfWorkHour") != null) {
-                order.setQuantityOfWorkHour(Double.parseDouble(request.getParameter("quantityOfWorkHour")));
+                order.setQuantityOfWorkHour(Integer.parseInt(request.getParameter("quantityOfWorkHour")));
             }else{
                 response.getWriter().append("Brak quantityOfWorkHour");
             }
@@ -96,7 +98,7 @@ public class EditOrder extends HttpServlet {
             response.getWriter().append("Brak daty");
         }
 
-        response.sendRedirect("/OrdersList");
+        response.sendRedirect("/OrderList2");
 
     }
 

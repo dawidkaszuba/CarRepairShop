@@ -16,7 +16,7 @@
 <div class="container">
     <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
 
-    <h3>wybierz przedział czasowy</h3>
+    <h1>wybierz przedział czasowy</h1>
     <form action="/Report2" method="post" class="row">
 
         <div class="form-group col-md-6">
@@ -29,7 +29,7 @@
         </div>
 
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Pokaż</button>
     </form>
 
 

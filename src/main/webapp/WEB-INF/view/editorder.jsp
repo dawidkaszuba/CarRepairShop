@@ -18,7 +18,7 @@
     <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
     <hr>
 
-    <h3>Dodaj zlecenie:</h3>
+    <h1>dodaj zlecenie:</h1>
 
     <form action="/EditOrder" method="post" class="row">
 
@@ -51,7 +51,8 @@
 
             <div class="form-group">
                 <label for="descriptionOfProblem">Opis problemu</label>
-                <input type="text" class="form-control" id="descriptionOfProblem" name="descriptionOfProblem" value="${order.descriptionOfProblem}">
+                <input type="text" class="form-control" id="descriptionOfProblem" name="descriptionOfProblem"
+                       value="${order.descriptionOfProblem}">
             </div>
         </div>
 
@@ -76,19 +77,22 @@
 
             <div class="form-group">
                 <label for="costOfAutoParts">Koszt części</label>
-                <input type="number" min="0.01" step="0.01" class="form-control" id="costOfAutoParts" name="costOfAutoParts" value="${order.costOfAutoParts}">
+                <input type="number" min="0.01" step="0.01" class="form-control" id="costOfAutoParts"
+                       name="costOfAutoParts" value="${order.costOfAutoParts}">
             </div>
 
             <div class="form-group">
                 <label for="quantityOfWorkHour">Ilość roboczogodzin</label>
-                <input type="number" min="1" step="1" class="form-control" id="quantityOfWorkHour" name="quantityOfWorkHour" value="${order.quantityOfWorkHour}">
+                <input type="number" min="1" step="1" class="form-control" id="quantityOfWorkHour"
+                       name="quantityOfWorkHour" value="${order.quantityOfWorkHour}">
             </div>
             <div class="form-group">
                 <label for="profit">Narzut</label>
-                <input type="number" min="0.01" step="0.01" class="form-control" id="profit" name="profit" placeholder="W przypadku kwoty 100 i narzutu 0,8 kwota dla klienta to 125">
+                <input type="number" min="0.01" step="0.01" class="form-control" id="profit" name="profit"
+                       placeholder="W przypadku kwoty 100 i narzutu 0,8 kwota dla klienta to 125">
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Zapisz</button>
     </form>
 
 

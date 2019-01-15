@@ -7,6 +7,12 @@
     <meta charset="utf-8">
     <meta lang="pl">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        span{
+            font-weight: bold;
+        }
+
+    </style>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -17,7 +23,7 @@
     <div class="container">
         <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
 
-        <h3>Dodaj pojazd:</h3>
+        <h1>dodaj pojazd:</h1>
         <form action="/AddVehicle" method="post" id="form" class="row">
             <div class="col-md-6">
                 <div class="form-group">
@@ -54,37 +60,31 @@
                     </select>
                 </div>
             </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Dodaj</button>
 
         </form>
 
-        <h3>pojazdy:</h3>
-        <table class="table">
-
-
-            <th>marka</th>
-            <th>model</th>
-            <th>rok produkcji</th>
-            <th>następny przegląd</th>
-            <th>akcja</th>
-
+        <h1>pojazdy:</h1>
 
             <c:forEach items="${vehicles}" var="vehicle">
+                <hr style="border-width: 4px">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div><p><span>marka</span><br>${vehicle.brand}</p></div>
+                        <div><p><span>model</span><br>${vehicle.model}</p></div>
+                    </div>
+                    <div class="col-md-4">
+                        <div><p><span>rok produkcji</span><br>${vehicle.yearOfProduction}</p></div>
+                        <div><p><span>następny przegląd</span><br>${vehicle.nextTechnicalReview}</p></div>
+                    </div>
+                    <div class="col-md-4">
+                        <div><p><span>akcja</span><br><a href="/DeleteVehicle?id=${vehicle.id}">usuń</a> /
+                                <a href="/EditVehicle?id=${vehicle.id}">edytuj</a></p></div>
+                    </div>
 
-                <tr>
-                    <td>${vehicle.brand}</td>
-                    <td>${vehicle.model}</td>
-                    <td>${vehicle.yearOfProduction}</td>
-                    <td>${vehicle.nextTechnicalReview}</td>
-                    <td><a href="/DeleteVehicle?id=${vehicle.id}">usuń</a> / <a href="/EditVehicle?id=${vehicle.id}">edytuj</a></td>
-
-                </tr>
+                </div>
 
             </c:forEach>
-
-
-        </table>
-
 
         <jsp:include page="/WEB-INF/view/fragments/footer.jspf"/>
 

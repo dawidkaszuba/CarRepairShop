@@ -23,7 +23,7 @@
         <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
 
 
-        <h3>wyszukani klienci:</h3>
+        <h1>wyszukani klienci:</h1>
 
         <c:forEach items="${customers}" var="customer">
             <hr style="border-width: 4px">
@@ -45,7 +45,7 @@
                         <a href="/OrdersOfCustomer?id=${customer.id}">zlecenia</a></p></div>
                 </div>
                 </div>
-            </div>
+
         </c:forEach>
 
 

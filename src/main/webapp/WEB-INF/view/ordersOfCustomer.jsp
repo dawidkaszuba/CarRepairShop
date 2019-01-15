@@ -24,7 +24,7 @@
     <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
 
 
-    <h3>zlecenia:</h3>
+    <h1>zlecenia:</h1>
     <c:forEach  items="${orders}" var="i">
         <c:forEach begin="0" end="0" items="${i}">
             <hr style="border-width: 4px">

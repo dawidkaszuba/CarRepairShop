@@ -17,7 +17,7 @@
         <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
 
 
-        <h3>pojazdy klienta:</h3>
+        <h1>pojazdy klienta:</h1>
         <table class="table">
 
 

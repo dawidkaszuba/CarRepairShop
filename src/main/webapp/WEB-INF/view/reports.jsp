@@ -19,7 +19,7 @@
 
     <p>Raport 1: roboczogodziny pracownika</p>
 
-    <h3>pracownicy:</h3>
+    <h1>pracownicy:</h1>
     <table class="table">
 
 

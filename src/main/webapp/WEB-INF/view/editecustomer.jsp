@@ -18,7 +18,7 @@
 
 
 
-        <h3>edytuj klienta:</h3>
+        <h1>edytuj klienta:</h1>
         <form action="/EditCustomer" method="post" class="row">
 
             <div class="form-group">
@@ -45,7 +45,7 @@
                     <input type="text" class="form-control" id="email" name="email" value="${customer.email}">
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Zapisz</button>
         </form>
 
 

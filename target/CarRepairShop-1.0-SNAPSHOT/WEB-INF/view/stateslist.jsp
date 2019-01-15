@@ -23,7 +23,7 @@
                     <label for="name">nazwa</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="nazwa">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Dodaj</button>
             </form>
 
 

@@ -8,6 +8,13 @@
     <meta lang="pl">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <style>
+        span{
+            font-weight: bold;
+        }
+
+    </style>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
           integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
@@ -15,18 +22,19 @@
 <body>
     <div class="container">
             <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
-            <h3>Raport roboczogodzin pracownika:</h3>
-            <table class="table">
-                <tr>
-                    <th>Imię i nazwisko pracownika</th>&nbsp<th>Ilość roboczogodzin</th><th>Przedział czasowy</th>
+            <h1>Raport roboczogodzin pracownika:</h1>
 
-                </tr>
-                <tr>
-                    <td>${employee.name}&nbsp;${employee.surname}</td><td>${workHours}</td><td>Od:&nbsp${startedDateOfRepair}&nbspDo:&nbsp${date}</td>
-                </tr>
-
-
-            </table>
+        <div class="row">
+            <div class="col-md-4">
+                <div><p><span>Imię i nazwisko</span><br>${employee.name}&nbsp;${employee.surname}</p></div>
+            </div>
+            <div class="col-md-4">
+                <div><p><span>Ilość roboczogodzin</span><br>${workHours}</p></div>
+            </div>
+            <div class="col-md-4">
+                <div><p><span>Przedział czasowy</span><br>${startedDateOfRepair}&nbsp-&nbsp${date}</p></div>
+            </div>
+        </div>
 
 
             <jsp:include page="/WEB-INF/view/fragments/footer.jspf"/>

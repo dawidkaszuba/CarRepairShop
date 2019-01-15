@@ -14,7 +14,7 @@ public class Order {
     private double costOfWork;
     private double costOfAutoParts;
     private double costOfWorkHour;
-    private double quantityOfWorkHour;
+    private int quantityOfWorkHour;
     private int idOfCustomer;
 
     public Integer getId() {
@@ -105,11 +105,11 @@ public class Order {
         this.costOfWorkHour = costOfWorkHour;
     }
 
-    public double getQuantityOfWorkHour() {
+    public int getQuantityOfWorkHour() {
         return quantityOfWorkHour;
     }
 
-    public void setQuantityOfWorkHour(double quantityOfWorkHour) {
+    public void setQuantityOfWorkHour(int quantityOfWorkHour) {
         this.quantityOfWorkHour = quantityOfWorkHour;
     }
 
@@ -124,7 +124,7 @@ public class Order {
     public Order(Integer id, LocalDate dateOfAcceptanceForRepair, LocalDate plannedRepairDate,
                  LocalDate startedDateOfRepair, int idOfEmployee, String descriptionOfProblem, String status,
                  int idOfVehicle, double costOfWork, double costOfAutoParts, double costOfWorkHour,
-                 double quantityOfWorkHour, int idOfCustomer) {
+                 int quantityOfWorkHour, int idOfCustomer) {
         this.id = id;
         this.dateOfAcceptanceForRepair = dateOfAcceptanceForRepair;
         this.plannedRepairDate = plannedRepairDate;

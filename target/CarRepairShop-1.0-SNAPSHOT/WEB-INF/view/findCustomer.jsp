@@ -14,6 +14,7 @@
 <body>
     <div class="container">
         <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
+        <h1>wyszukaj klienta</h1>
 
         <form action="/FindCustomer" method="post" id="form">
 
@@ -22,7 +23,7 @@
                 <input type="text" class="form-control" id="name" name="name">
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Szukaj</button>
         </form>
 
 

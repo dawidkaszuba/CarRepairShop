@@ -17,7 +17,7 @@
 
 
 
-        <h3>edytuj status:</h3>
+        <h1>edytuj status:</h1>
         <form action="/EditState" method="post">
 
             <div class="form-group">
@@ -27,7 +27,7 @@
                 <label for="name">nazwa</label>
                 <input type="text" class="form-control" id="name" name="name" value="${state.name}">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Zapisz</button>
         </form>
 
 
