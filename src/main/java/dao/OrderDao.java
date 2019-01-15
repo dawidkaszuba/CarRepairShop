@@ -68,13 +68,14 @@ public class OrderDao {
         }
     }
 
-    public static void delete(Connection connection,Order order) {
-        if(order.getId() != null) {
+    public static void delete(Integer id) {
+        if(id != null) {
             String sql = "DELETE FROM orders WHERE id =?";
-            try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-                preparedStatement.setInt(1, order.getId());
+            try(Connection connection = DbUtil.getConn()){
+            try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setInt(1, id);
                 preparedStatement.execute();
-
+            }
             }catch(SQLException e) {
                 e.printStackTrace();
             }
