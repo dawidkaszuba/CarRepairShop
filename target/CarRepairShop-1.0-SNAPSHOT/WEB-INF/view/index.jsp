@@ -7,6 +7,12 @@
     <meta charset="utf-8">
     <meta lang="pl">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        span{
+            font-weight: bold;
+        }
+
+    </style>
     <link rel="stylesheet" type="text/css" href="style.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -17,34 +23,31 @@
 
     <div class="container">
             <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
-            <table class="table">
-
-                <th>id</th>
-                <th>opis problemu</th>
-                <th>marka</th>
-                <th>model</th>
-                <th>numer rejestracyjny</th>
 
                 <c:forEach  items="${OrderWithVehicle}" var="i">
 
-                    <c:forEach begin="0" end="0" items="${i}">
 
-                        <tr>
-                            <td>${i[0]}</td>
-                            <td>${i[1]}</td>
-                            <td>${i[2]}</td>
-                            <td>${i[3]}</td>
-                            <td>${i[4]}</td>
+                            <c:forEach begin="0" end="0" items="${i}">
 
-                        </tr>
+                                <hr style="border-width: 4px">
 
+                                <div class="row">
+                                     <div class="col-md-6">
+                                        <div><p><span>id</span><br>${i[0]}</p></div>
+                                        <div><p><span>opis problemu</span><br>${i[1]}</p></div>
+                                         <div><p><span>marka</span><br>${i[2]}</p></div>
+                                     </div>
+                                     <div class="col-md-6">
+                                         <div><p><span>model</span><br>${i[3]}</p></div>
+                                        <div><p><span>numer rejestracyjny</span><br>${i[4]}</p></div>
+                                     </div>
+
+                                </div>
 
                     </c:forEach>
 
 
                 </c:forEach>
-
-            </table>
 
 
             <jsp:include page="/WEB-INF/view/fragments/footer.jspf"/>

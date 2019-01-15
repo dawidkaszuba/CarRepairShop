@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/OrdersOfCustomer")
@@ -21,7 +22,7 @@ public class OrdersOfCustomer extends HttpServlet {
 
         if(request.getParameter("id") != null){
             int id = Integer.parseInt(request.getParameter("id"));
-            List<Order> orders = OrderDao.findOrderByCustomerId(id);
+            List<ArrayList<String>> orders = OrderDao.findOrderWithVehicleEmployeeByCustomerId(id);
             request.setAttribute("orders",orders);
             getServletContext().getRequestDispatcher("/WEB-INF/view/ordersOfCustomer.jsp").forward(request,response);
         }

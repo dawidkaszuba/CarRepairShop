@@ -7,6 +7,12 @@
     <meta charset="utf-8">
     <meta lang="pl">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        span{
+            font-weight: bold;
+        }
+
+    </style>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -44,33 +50,25 @@
 
         <div><a href="/FindCustomer">wyszukaj klienta-->></a></div>
 
-
-
         <h3>klienci:</h3>
-        <table class="table">
-
-
-
-            <th>nazwisko i nazwisko</th>
-            <th>urodziny</th>
-            <th>email</th>
-            <th>akcja</th>
-
 
             <c:forEach items="${customers}" var="customer">
+                <hr style="border-width: 4px">
+                <div class="row">
 
-                <tr>
-                    <td>${customer.name} &nbsp ${customer.surname}</td>
-                    <td>${customer.birthday}</td>
-                    <td>${customer.email}</td>
-                    <td><a href="/DeleteCustomer?id=${customer.id}">usuń</a> /
-                        <a href="/EditCustomer?id=${customer.id}">edytuj</a> / <a href="/OrdersOfCustomer?id=${customer.id}">zlecenia</a></td>
-                </tr>
 
+                    <div class="col-md-6">
+                        <div><p><span>imię i nazwisko</span><br>${customer.name} &nbsp ${customer.surname}</p></div>
+                        <div><p><span>urodziny</span><br>${customer.birthday}</p></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div><p><span>email</span><br>${customer.email}</p></div>
+                        <div> <p><span>akcja</span><br><a href="/DeleteCustomer?id=${customer.id}">usuń</a> /
+                            <a href="/EditCustomer?id=${customer.id}">edytuj</a> /
+                            <a href="/OrdersOfCustomer?id=${customer.id}">zlecenia</a></p></div>
+                    </div>
+                </div>
             </c:forEach>
-
-
-        </table>
 
 
         <jsp:include page="/WEB-INF/view/fragments/footer.jspf"/>

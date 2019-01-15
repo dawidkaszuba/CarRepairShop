@@ -7,6 +7,12 @@
     <meta charset="utf-8">
     <meta lang="pl">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        span{
+            font-weight: bold;
+        }
+
+    </style>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -53,34 +59,29 @@
         </form>
 
         <h3>pracownicy:</h3>
-        <table class="table">
 
+        <c:forEach items="${employees}" var="employee">
+            <hr style="border-width: 4px">
 
-            <th>imię i nazwisko</th>
-            <th>adres</th>
-            <th>numer telefonu</th>
-            <th>uwagi</th>
-            <th>koszt robocizny</th>
-            <th>akcja</th>
+        <div class="row">
+               <div class="col-md-6">
 
-
-            <c:forEach items="${employees}" var="employee">
-
-                <tr>
-                    <td>${employee.name} &nbsp ${employee.surname}</td>
-                    <td>${employee.address}</td>
-                    <td>${employee.phoneNumber}</td>
-                    <td>${employee.note}</td>
-                    <td>${employee.costOfWorkHour}</td>
-                    <td><a href="/DeleteEmployee?id=${employee.id}">usuń</a> / <a href="/EditEmployee?id=${employee.id}">edytuj</a> /
-                        <a href="CurrentOrders?id=${employee.id}">aktualne zlecenia</a></td>
-
-                </tr>
+                    <div><p><span>imię i nazwisko</span><br>${employee.name} &nbsp ${employee.surname}</p></div>
+                    <div><p><span>adres</span><br>${employee.address}</p></div>
+                    <div><p><span>numer telefonu</span><br>${employee.phoneNumber}</p></div>
+               </div>
+               <div class="col-md-6">
+                    <div><p><span>uwagi</span><br>${employee.note}</p></div>
+                    <div><p><span>koszt robocizny</span><br>${employee.costOfWorkHour}</p></div>
+                    <div><p><span>akcja</span><br><a href="/DeleteEmployee?id=${employee.id}">usuń</a> /
+                        <a href="/EditEmployee?id=${employee.id}">edytuj</a> /
+                        <a href="CurrentOrders?id=${employee.id}">aktualne zlecenia</a></p></div>
+               </div>
+        </div>
 
             </c:forEach>
 
 
-        </table>
 
 
         <jsp:include page="/WEB-INF/view/fragments/footer.jspf"/>

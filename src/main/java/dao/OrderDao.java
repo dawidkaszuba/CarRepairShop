@@ -377,6 +377,7 @@ public class OrderDao {
                     String customerName = rs.getString("customers.name");
                     String customerSurname = rs.getString("customers.surname");
                     String plannedRepairDate = rs.getString("plannedRepairDate");
+                    String orderId = rs.getString("orders.id");
 
                     firstList.add(dateOfAcceptanceForRepair);
                     firstList.add(startedDateOfRepair);
@@ -393,6 +394,62 @@ public class OrderDao {
                     firstList.add(customerName);
                     firstList.add(customerSurname);
                     firstList.add(plannedRepairDate);
+                    firstList.add(orderId);
+
+                    list.add((ArrayList<String>) firstList);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public static List<ArrayList<String>> findOrderWithVehicleEmployeeByCustomerId(int id){
+        String sql = "SELECT * from orders JOIN vehicles ON idOfVehicle=vehicles.id " +
+                "JOIN employees ON employees.id=idOfEmployee" +
+                " JOIN customers ON customers.id=idOfCustomer where idOfCustomer=?";
+        List<ArrayList<String>> list = new ArrayList<>();
+        try(Connection connection = DbUtil.getConn()){
+            try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+                preparedStatement.setInt(1,id);
+                ResultSet rs = preparedStatement.executeQuery();
+                while(rs.next()){
+                    List<String> firstList = new ArrayList<>();
+                    String dateOfAcceptanceForRepair = rs.getString("dateOfAcceptanceForRepair");
+                    String startedDateOfRepair = rs.getString("startedDateOfRepair");
+                    String employeesName = rs.getString("employees.name");
+                    String employeesSurname = rs.getString("employees.surname");
+                    String descriptionOfProblem = rs.getString("descriptionOfProblem");
+                    String status = rs.getString("status");
+                    String brand = rs.getString("brand");
+                    String model = rs.getString("model");
+                    String costOfWork = rs.getString("costOfWork");
+                    String costOfAutoParts = rs.getString("costOfAutoParts");
+                    String costOfWorkHour = rs.getString("costOfWorkHour");
+                    String quantityOfWorkHour = rs.getString("quantityOfWorkHour");
+                    String customerName = rs.getString("customers.name");
+                    String customerSurname = rs.getString("customers.surname");
+                    String plannedRepairDate = rs.getString("plannedRepairDate");
+                    String orderId = rs.getString("orders.id");
+
+                    firstList.add(dateOfAcceptanceForRepair);
+                    firstList.add(startedDateOfRepair);
+                    firstList.add(employeesName);
+                    firstList.add(employeesSurname);
+                    firstList.add(descriptionOfProblem);
+                    firstList.add(status);
+                    firstList.add(brand);
+                    firstList.add(model);
+                    firstList.add(costOfWork);
+                    firstList.add(costOfAutoParts);
+                    firstList.add(costOfWorkHour);
+                    firstList.add(quantityOfWorkHour);
+                    firstList.add(customerName);
+                    firstList.add(customerSurname);
+                    firstList.add(plannedRepairDate);
+                    firstList.add(orderId);
 
                     list.add((ArrayList<String>) firstList);
                 }
