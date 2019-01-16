@@ -31,7 +31,6 @@ public class DeleteState extends HttpServlet {
             response.getWriter().append("brak parametru");
         }
 
-
-    }
+        }
     }
 

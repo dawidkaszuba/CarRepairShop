@@ -22,7 +22,7 @@ public class Error1 extends HttpServlet {
                 "    <title>Brak danych w bazie</title>\n" +
                 "</head>\n" +
                 "<body>\n" +
-                "<h1>Wypełnij wszystkie pola...</h1>\n" +
+                "<h1>Wypełnij wszystkie pola lub popraw dane</h1>\n" +
                 "\n" +
                 "</body>\n" +
                 "</html>\n");
