@@ -21,14 +21,17 @@ public class DeleteState extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         if(request.getParameter("id") !=null){
-
+            if(Integer.parseInt(request.getParameter("id")) !=3 ) {
                 StateDao.delete(Integer.parseInt(request.getParameter("id")));
-
+                response.sendRedirect("/StatesList");
+            }else{
+                response.sendRedirect("/Error2");
+            }
         }else{
             response.getWriter().append("brak parametru");
         }
 
-        response.sendRedirect("/StatesList");
+
     }
     }
 

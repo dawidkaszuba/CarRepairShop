@@ -15,24 +15,31 @@ import java.io.IOException;
 public class EditState extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        State state = new State();
+        String name;
+        int id;
 
-        if(request.getParameter("id") != null){
-            state.setId(Integer.parseInt(request.getParameter("id")));
-        }else{
-            response.getWriter().append("Brak id.Uzupełnij wszystkie pola");
+        try{
+            name = request.getParameter("name");
+            id = Integer.parseInt(request.getParameter("id"));
+            if(!(name.equals("w naprawie"))) {
+                if (name != "" && !(name.equals("w naprawie"))) {
+                    State state = new State();
+                    state.setId(id);
+                    state.setName(name);
+                    StateDao.save(state);
+                    response.sendRedirect("/StatesList");
+                } else {
+                    response.sendRedirect("/Error1");
+                }
+            }else{
+                response.sendRedirect("/Error2");
+            }
+        }catch(NullPointerException e){
+            response.sendRedirect("/Error1");
         }
-        if(request.getParameter("name") != null){
-            state.setName(request.getParameter("name"));
-        }else{
-            response.getWriter().append("Brak name.Uzupełnij wszystkie pola");
-        }
-
-        StateDao.save(state);
-
-        response.sendRedirect("/StatesList");
 
     }
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
