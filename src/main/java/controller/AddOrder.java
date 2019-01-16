@@ -1,9 +1,7 @@
 package controller;
 
-import dao.CustomerDao;
-import dao.EmployeeDao;
-import dao.OrderDao;
-import model.Order;
+import dao.*;
+import model.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/AddOrder")
 public class AddOrder extends HttpServlet {
@@ -74,6 +74,19 @@ public class AddOrder extends HttpServlet {
         } catch (NumberFormatException e) {
             response.sendRedirect("/Error1");
         }
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        List<Vehicle> vehicles = VehicleDao.findAll();
+        List<Employee> employees = EmployeeDao.findAll();
+        List<State> states = StateDao.findAll();
+        request.setAttribute("vehicles",vehicles);
+        request.setAttribute("employees",employees);
+        request.setAttribute("states",states);
+        getServletContext().getRequestDispatcher("/WEB-INF/view/addOrder.jsp").forward(request,response);
+
+
     }
 }
 

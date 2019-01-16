@@ -22,41 +22,6 @@
     <div class="container">
         <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
 
-        <h1>dodaj pracownika:</h1>
-        <form action="/AddEmployee" method="post" class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="name">imię</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="imię">
-                </div>
-                <div class="form-group">
-                    <label for="surname">nazwisko</label>
-                    <input type="text" class="form-control" id="surname" name="surname" placeholder="nazwisko">
-                </div>
-                <div class="form-group">
-                    <label for="address">adres</label>
-                    <input type="text" class="form-control" id="address" name="address" placeholder="ulica, nr budynku, kod pocztowy, miejscowość">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="phoneNumber">nr telefonu</label>
-                    <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="nr tel">
-                </div>
-
-                <div class="form-group">
-                    <label for="note">uwagi</label>
-                    <input type="textarea" class="form-control" id="note" name="note" placeholder="uwagi...">
-                </div>
-
-                <div class="form-group">
-                    <label for="costOfWorkHour">koszt roboczogodziny</label>
-                    <input type="number" class="form-control" id="costOfWorkHour" name="costOfWorkHour">
-                </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Dodaj</button>
-        </form>
 
         <h3>pracownicy:</h3>
 

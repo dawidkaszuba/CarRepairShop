@@ -1,8 +1,10 @@
 package controller;
 
 
+import dao.CustomerDao;
 import dao.VehicleDao;
 import database.DbUtil;
+import model.Customer;
 import model.Vehicle;
 
 import javax.servlet.ServletException;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 @WebServlet("/AddVehicle")
 public class AddVehicle extends HttpServlet {
@@ -60,6 +63,9 @@ public class AddVehicle extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
+        List<Customer> customers = CustomerDao.findAll();
+        request.setAttribute("customers", customers);
+        getServletContext().getRequestDispatcher("/WEB-INF/view/addVehicle.jsp").forward(request,response);
 
 
     }

@@ -34,6 +34,6 @@ public class AddState extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        getServletContext().getRequestDispatcher("/WEB-INF/view/addState.jsp").forward(request,response);
     }
 }

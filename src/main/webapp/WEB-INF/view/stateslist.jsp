@@ -16,16 +16,7 @@
     <div class="container">
         <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
 
-        <h3>Dodaj status:</h3>
         <div class="row">
-            <form action="/AddState" method="post" class="col-md-6">
-                <div class="form-group">
-                    <label for="name">nazwa</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="nazwa">
-                </div>
-                <button type="submit" class="btn btn-primary">Dodaj</button>
-            </form>
-
 
             <div class="col-md-6">
                 <h3>statusy:</h3>

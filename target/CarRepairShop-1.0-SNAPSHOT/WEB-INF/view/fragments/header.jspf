@@ -14,10 +14,42 @@
 
         <ul class="navbar-nav">
             <li class="nav-item"><a class="nav-link text-dark active" href="/StartPage">strona główna</a></li>
-            <li class="nav-item"><a class="nav-link text-dark active" href="/VehiclesList">samochody</a></li>
-            <li class="nav-item"><a class="nav-link text-dark active" href="/OrderList2">zlecenia</a></li>
-            <li class="nav-item"><a class="nav-link text-dark active" href="/EmployeeList">pracownicy</a></li>
-            <li class="nav-item"><a class="nav-link text-dark " href="/CustomersList">klienci</a></li>
+            <li class="nav-item dropdown">
+
+                <a class="nav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown" role="button">pojazdy</a>
+
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="AddVehicle">dodaj pojazd</a>
+                    <a class="dropdown-item" href="/VehiclesList">lista pojazdów</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+
+                <a class="nav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown" role="button">zlecenia</a>
+
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="AddOrder">dodaj zlecenie</a>
+                    <a class="dropdown-item" href="/OrderList2">lista zleceń</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+
+                <a class="nav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown" role="button">pracownicy</a>
+
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/AddEmployee">dodaj pracownika</a>
+                    <a class="dropdown-item" href="/EmployeeList">lista pracowników</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+
+                <a class="nav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown" role="button">klienci</a>
+
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="AddCustomer">dodaj klienta</a>
+                    <a class="dropdown-item" href="/CustomersList">lista klientów</a>
+                </div>
+            </li>
             <li class="nav-item dropdown">
 
                 <a class="nav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown" role="button">raporty</a>
@@ -29,7 +61,15 @@
             </li>
 
 
-            <li class="nav-item"><a class="nav-link text-dark active" href="/StatesList">statusy</a></li>
+            <li class="nav-item dropdown">
+
+                <a class="nav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown" role="button">statusy</a>
+
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="AddState">dodaj status</a>
+                    <a class="dropdown-item" href="/StatesList">lista statusów</a>
+                </div>
+            </li>
         </ul>
 
     </div>

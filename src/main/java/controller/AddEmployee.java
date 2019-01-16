@@ -63,6 +63,6 @@ public class AddEmployee extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        getServletContext().getRequestDispatcher("/WEB-INF/view/addEmployee.jsp").forward(request,response);
     }
 }

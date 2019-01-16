@@ -23,46 +23,6 @@
     <div class="container">
         <jsp:include page="/WEB-INF/view/fragments/header.jspf"/>
 
-        <h1>dodaj pojazd:</h1>
-        <form action="/AddVehicle" method="post" id="form" class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="brand">marka</label>
-                    <input type="text" class="form-control" id="brand" name="brand" placeholder="marka">
-                </div>
-                <div class="form-group">
-                    <label for="model">model</label>
-                    <input type="text" class="form-control" id="model" name="model" placeholder="model">
-                </div>
-                <div class="form-group">
-                    <label for="yearOfProduction">rok produkcji</label>
-                    <input type="number" class="form-control" id="yearOfProduction" name="yearOfProduction" placeholder="rok produkcji">
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="registrationNumber">numer rejestracyjny</label>
-                    <input type="text" class="form-control" id="registrationNumber" name="registrationNumber" placeholder="numer rejestracyjny">
-                </div>
-
-                <div class="form-group">
-                    <label for="nextTechnicalReview">nastepny przegląd</label>
-                    <input type="date" class="form-control" id="nextTechnicalReview" name="nextTechnicalReview" placeholder="następny przegląd">
-                </div>
-
-                <div class="form-group">
-                    <label for="idOfOwner">właściciel pojazdu</label>
-                    <select id="idOfOwner" class="form-control" name="idOfOwner">
-                        <c:forEach items="${customers}" var="customer">
-                            <option  value="${customer.id}">${customer.name}&nbsp${customer.surname}&nbsp${customer.email}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-            </div>
-                <button type="submit" class="btn btn-primary">Dodaj</button>
-
-        </form>
 
         <h1>pojazdy:</h1>
 

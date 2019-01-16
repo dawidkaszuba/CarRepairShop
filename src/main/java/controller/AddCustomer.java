@@ -56,6 +56,7 @@ public class AddCustomer extends HttpServlet {
         }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        getServletContext().getRequestDispatcher("/WEB-INF/view/addCustomer.jsp").forward(request,response);
 
     }
 }
