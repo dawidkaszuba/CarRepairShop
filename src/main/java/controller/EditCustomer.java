@@ -19,42 +19,43 @@ import java.time.LocalDate;
 public class EditCustomer extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Customer customer = new Customer();
+        String name=null;
+        String surname=null;
+        String birthday=null;
+        String email=null;
+        int id = -1;
 
-        if(request.getParameter("id") != null){
-            customer.setId(Integer.parseInt(request.getParameter("id")));
-        }else{
-            response.getWriter().append("Brak danych.Uzupełnij wszystkie pola");
-        }
-        if(request.getParameter("name") != null){
-            customer.setName(request.getParameter("name"));
-        }else{
-            response.getWriter().append("Brak danych.Uzupełnij wszystkie pola");
-        }
-        if(request.getParameter("surname") != null){
-            customer.setSurname(request.getParameter("surname"));
-        }else{
-            response.getWriter().append("Brak danych.Uzupełnij wszystkie pola");
-        }
+        try{
+            id = Integer.parseInt(request.getParameter("id"));
+            name =request.getParameter("name");
+            surname = request.getParameter("surname");
+            birthday = request.getParameter("birthday");
+            email = request.getParameter("email");
 
-        if(request.getParameter("birthday") != null){
-            customer.setBirthday(LocalDate.parse(request.getParameter("birthday")));
-        }else{
-            response.getWriter().append("Brak danych.Uzupełnij wszystkie pola");
-        }
-        if(request.getParameter("email") != null){
-            customer.setEmail(request.getParameter("email"));
-        }else{
-            response.getWriter().append("Brak danych.Uzupełnij wszystkie pola");
+
+        }catch(NullPointerException e) {
+            response.sendRedirect("/Error1");
         }
 
         try {
-            CustomerDao.save(DbUtil.getConn(),customer);
+
+            if (name != "" && surname != "" && birthday != "" && email != "") {
+                Customer customer = new Customer();
+                customer.setId(id);
+                customer.setName(name);
+                customer.setSurname(surname);
+                customer.setBirthday(LocalDate.parse(birthday));
+                customer.setEmail(email);
+                CustomerDao.save(DbUtil.getConn(), customer);
+                response.sendRedirect("/CustomersList");
+            }
+            else{
+                response.sendRedirect("/Error1");
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        response.sendRedirect("/CustomersList");
 
 
     }
