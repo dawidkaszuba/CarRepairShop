@@ -14,13 +14,15 @@ public class Error1 extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setCharacterEncoding("utf8");
+        response.setContentType("text/html");
 
         response.getWriter().append("<html>\n" +
                 "<head>\n" +
                 "    <title>Brak danych w bazie</title>\n" +
                 "</head>\n" +
                 "<body>\n" +
-                "<h1>Brak danych w bazie...</h1>\n" +
+                "<h1>Wypełnij wszystkie pola...</h1>\n" +
                 "\n" +
                 "</body>\n" +
                 "</html>\n");

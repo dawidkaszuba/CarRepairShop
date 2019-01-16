@@ -18,41 +18,42 @@ import java.time.LocalDate;
 public class AddCustomer extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        String name=null;
+        String surname=null;
+        String birthday=null;
+        String email=null;
+
         try{
-            Customer customer = new Customer();
-            if(request.getParameter("name") != null){
-               customer.setName(request.getParameter("name"));
-            }else{
-                response.getWriter().append("Brak danych.Uzupełnij wszystkie pola");
-            }
-            if(request.getParameter("surname") != null){
-                customer.setSurname(request.getParameter("surname"));
-            }else{
-                response.getWriter().append("Brak danych.Uzupełnij wszystkie pola");
-            }
+            name =request.getParameter("name");
+            surname = request.getParameter("surname");
+            birthday = request.getParameter("birthday");
+            email = request.getParameter("email");
 
-            if(request.getParameter("birthday") != null){
-                customer.setBirthday(LocalDate.parse(request.getParameter("birthday")));
-            }else{
-                response.getWriter().append("Brak danych.Uzupełnij wszystkie pola");
-            }
-            if(request.getParameter("email") != null){
-                customer.setEmail(request.getParameter("email"));
-            }else{
-                response.getWriter().append("Brak danych.Uzupełnij wszystkie pola");
-            }
 
-            CustomerDao.save(DbUtil.getConn(),customer);
-
-        }catch(NumberFormatException e){
-            response.getWriter().append("Brak danych.Uzupełnij wszystkie pola");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+        }catch(NullPointerException e) {
+            response.sendRedirect("/Error1");
         }
 
-        response.sendRedirect("/CustomersList");
-    }
+            try {
+
+                if (name != "" && surname != "" && birthday != "" && email != "") {
+                    Customer customer = new Customer();
+                    customer.setName(name);
+                    customer.setSurname(surname);
+                    customer.setBirthday(LocalDate.parse(birthday));
+                    customer.setEmail(email);
+                    CustomerDao.save(DbUtil.getConn(), customer);
+                    response.sendRedirect("/CustomersList");
+                }
+                else{
+                    response.sendRedirect("/Error1");
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
