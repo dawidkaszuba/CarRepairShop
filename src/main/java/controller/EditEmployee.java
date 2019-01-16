@@ -18,69 +18,60 @@ import java.sql.SQLException;
 public class EditEmployee extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-        Employee employee = new Employee();
-
-        if(request.getParameter("id")!=null){
-            employee.setId(Integer.parseInt(request.getParameter("id")));
-        }else{
-            response.getWriter().append("Brak danych");
-        }
-
-        if(request.getParameter("name")!=null){
-            employee.setName(request.getParameter("name"));
-        }else{
-            response.getWriter().append("Brak danych");
-        }
-
-        if(request.getParameter("surname")!=null){
-            employee.setSurname(request.getParameter("surname"));
-        }else{
-            response.getWriter().append("Brak danych");
-        }
-        if(request.getParameter("address")!=null){
-            employee.setAddress(request.getParameter("address"));
-        }else{
-            response.getWriter().append("Brak danych");
-        }
-        if(request.getParameter("phoneNumber")!=null){
-            employee.setPhoneNumber(request.getParameter("phoneNumber"));
-        }else{
-            response.getWriter().append("Brak danych");
-        }
-        if(request.getParameter("note")!=null){
-            employee.setNote(request.getParameter("note"));
-        }else{
-            response.getWriter().append("Brak danych");
-        }
-        if(request.getParameter("costOfWorkHour")!=null){
-            employee.setCostOfWorkHour(Double.parseDouble(request.getParameter("costOfWorkHour")));
-        }else{
-            response.getWriter().append("Brak danych");
-        }
+        response.setCharacterEncoding("utf-8");
+        request.setCharacterEncoding("utf-8");
+        int id;
+        String name;
+        String surname;
+        String address;
+        String phoneNumber;
+        String note;
+        double costOfWorkHour;
 
         try {
-            EmployeeDao.save(DbUtil.getConn(), employee);
-        } catch (SQLException e) {
-            e.printStackTrace();
+            id = Integer.parseInt(request.getParameter("id"));
+            name = request.getParameter("name");
+            surname = request.getParameter("surname");
+            address = request.getParameter("address");
+            phoneNumber = request.getParameter("phoneNumber");
+            note = request.getParameter("note");
+            costOfWorkHour = Double.parseDouble(request.getParameter("costOfWorkHour"));
+
+            try{
+                if(name!="" && surname!="" && address != "" && phoneNumber != "" && note != ""){
+                    Employee employee = new Employee();
+                    employee.setId(id);
+                    employee.setName(name);
+                    employee.setSurname(surname);
+                    employee.setAddress(address);
+                    employee.setPhoneNumber(phoneNumber);
+                    employee.setNote(note);
+                    employee.setCostOfWorkHour(costOfWorkHour);
+
+                    EmployeeDao.save(DbUtil.getConn(),employee);
+                    response.sendRedirect("/EmployeeList");
+                }
+                else{
+                    response.sendRedirect("/Error1");
+                }
+
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+
+        }catch(NumberFormatException e) {
+            response.sendRedirect("/Error1");
         }
 
-        response.sendRedirect("/EmployeeList");
-
-
     }
-
-
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         if(request.getParameter("id") != null){
 
-
                Employee employee = EmployeeDao.findById(Integer.parseInt(request.getParameter("id")));
                request.setAttribute("employee", employee);
                getServletContext().getRequestDispatcher("/WEB-INF/view/editemployee.jsp").forward(request,response);
-
 
         }else{
             response.getWriter().append("Brak danych");
