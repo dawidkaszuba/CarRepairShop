@@ -13,22 +13,23 @@ import java.io.IOException;
 @WebServlet("/AddState")
 public class AddState extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String name;
+
         try{
-        if(request.getParameter("name") != ""){
-            System.out.println(request.getParameter("name"));
-            State state = new State();
-            state.setName(request.getParameter("name"));
-            StateDao.save(state);
-        }else {
-            response.getWriter().append("Brak nazwy statusu");
+            name = request.getParameter("name");
+            if(name != ""){
+                State state = new State();
+                state.setName(name);
+                StateDao.save(state);
+                response.sendRedirect("/StatesList");
+            }
+            else{
+                response.sendRedirect("/Error1");
+            }
+        }catch(NullPointerException e){
+            response.sendRedirect("/Error1");
         }
-
-
-        }catch(NumberFormatException e){
-            response.getWriter().append("Brak nazwy statusu");
-        }
-
-        response.sendRedirect("/StatesList");
 
     }
 
