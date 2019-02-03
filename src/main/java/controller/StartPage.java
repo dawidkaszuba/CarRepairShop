@@ -22,10 +22,9 @@ public class StartPage extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int numberOrders = Integer.parseInt(getServletContext().getInitParameter("number-orders"));
+     //   int numberOrders = Integer.parseInt(getServletContext().getInitParameter("number-orders"));
 
-//        List<Order> orders = OrderDao.findAll(numberOrders);
-//        request.setAttribute("orders", orders);
+
          List<ArrayList<String>> OrderWithVehicle = OrderDao.findOrderWithVehicle();
         request.setAttribute("OrderWithVehicle",OrderWithVehicle);
 
