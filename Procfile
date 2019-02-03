@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* src.main.java.controller.StartPage
+java -Dserver.port=$PORT $JAVA_OPTS -jar target/*.war
