@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/* src.main.java.controller.StartPage
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* classes.controller.StartPage.class
