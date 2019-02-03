@@ -1,1 +1,1 @@
-java -Dserver.port=$PORT $JAVA_OPTS -jar target/*.war
+web: java $JAVA_OPTS -cp target/classes:target/* src.main.java.controller.StartPage
